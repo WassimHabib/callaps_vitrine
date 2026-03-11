@@ -1,6 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 
 export default function Hero() {
+  const { lang } = useLang();
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
       {/* Large glow effect */}
@@ -17,15 +23,13 @@ export default function Hero() {
       <div className="relative z-10 max-w-4xl mx-auto text-center px-6 py-20">
         {/* Main heading */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6 animate-fade-in-up">
-          Automatisez vos appels avec des{" "}
-          <span className="gradient-text">agents IA intelligents</span>
+          {t.hero.title1[lang]}{" "}
+          <span className="gradient-text">{t.hero.titleHighlight[lang]}</span>
         </h1>
 
         {/* Subtitle */}
         <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 animate-fade-in-up animation-delay-200">
-          Callaps crée des agents conversationnels personnalisés qui gèrent vos
-          appels entrants et sortants, 24h/24, 7j/7. Plus de leads, moins de
-          coûts.
+          {t.hero.subtitle[lang]}
         </p>
 
         {/* CTA buttons */}
@@ -34,29 +38,29 @@ export default function Hero() {
             href="/demo"
             className="px-8 py-3.5 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold text-lg shadow-lg shadow-primary/25 transition-transform duration-300 hover:scale-105"
           >
-            Démarrer gratuitement
+            {t.hero.ctaPrimary[lang]}
           </Link>
           <Link
             href="/demo"
             className="px-8 py-3.5 rounded-full glass text-white font-semibold text-lg transition-all duration-300 hover:scale-105 hover:border-white/20"
           >
-            Voir la démo
+            {t.hero.ctaSecondary[lang]}
           </Link>
         </div>
 
         {/* Stats row */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto animate-fade-in-up animation-delay-600">
           <div className="glass rounded-2xl p-6">
-            <p className="text-3xl font-bold gradient-text mb-1">98%</p>
-            <p className="text-sm text-slate-400">Satisfaction client</p>
+            <p className="text-3xl font-bold gradient-text mb-1">{t.hero.stat1Value[lang]}</p>
+            <p className="text-sm text-slate-400">{t.hero.stat1Label[lang]}</p>
           </div>
           <div className="glass rounded-2xl p-6">
-            <p className="text-3xl font-bold gradient-text mb-1">24/7</p>
-            <p className="text-sm text-slate-400">Disponibilité</p>
+            <p className="text-3xl font-bold gradient-text mb-1">{t.hero.stat2Value[lang]}</p>
+            <p className="text-sm text-slate-400">{t.hero.stat2Label[lang]}</p>
           </div>
           <div className="glass rounded-2xl p-6">
-            <p className="text-3xl font-bold gradient-text mb-1">x3</p>
-            <p className="text-sm text-slate-400">Leads générés</p>
+            <p className="text-3xl font-bold gradient-text mb-1">{t.hero.stat3Value[lang]}</p>
+            <p className="text-sm text-slate-400">{t.hero.stat3Label[lang]}</p>
           </div>
         </div>
       </div>

@@ -3,17 +3,13 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-const navLinks = [
-  { label: "Fonctionnalités", href: "#features" },
-  { label: "Solutions", href: "#solutions" },
-  { label: "Tarifs", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
-];
+import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { lang, setLang } = useLang();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -22,6 +18,13 @@ export default function Header() {
   }, []);
 
   const handleNavClick = () => setMobileOpen(false);
+
+  const navLinks = [
+    { label: t.nav.features[lang], href: "#features" },
+    { label: t.nav.solutions[lang], href: "#solutions" },
+    { label: t.nav.pricing[lang], href: "#pricing" },
+    { label: t.nav.faq[lang], href: "#faq" },
+  ];
 
   return (
     <header
@@ -58,13 +61,39 @@ export default function Header() {
           ))}
         </ul>
 
-        {/* Desktop CTA */}
-        <div className="hidden md:block">
+        {/* Desktop language selector + CTA */}
+        <div className="hidden md:flex items-center gap-4">
+          {/* Language selector */}
+          <div className="flex items-center gap-1 rounded-lg bg-white/5 p-1">
+            <button
+              type="button"
+              onClick={() => setLang("fr")}
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
+                lang === "fr"
+                  ? "bg-white/10 text-white"
+                  : "text-slate-400"
+              }`}
+            >
+              FR
+            </button>
+            <button
+              type="button"
+              onClick={() => setLang("en")}
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
+                lang === "en"
+                  ? "bg-white/10 text-white"
+                  : "text-slate-400"
+              }`}
+            >
+              EN
+            </button>
+          </div>
+
           <Link
             href="/demo"
             className="inline-flex items-center rounded-lg bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-primary/40 hover:scale-105"
           >
-            Essai gratuit
+            {t.nav.cta[lang]}
           </Link>
         </div>
 
@@ -100,7 +129,7 @@ export default function Header() {
       {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          mobileOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="glass mx-4 mb-4 rounded-xl px-6 py-5">
@@ -117,13 +146,40 @@ export default function Header() {
               </li>
             ))}
           </ul>
+
+          {/* Mobile language selector */}
+          <div className="mt-4 flex items-center gap-1 rounded-lg bg-white/5 p-1 w-fit">
+            <button
+              type="button"
+              onClick={() => setLang("fr")}
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
+                lang === "fr"
+                  ? "bg-white/10 text-white"
+                  : "text-slate-400"
+              }`}
+            >
+              FR
+            </button>
+            <button
+              type="button"
+              onClick={() => setLang("en")}
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
+                lang === "en"
+                  ? "bg-white/10 text-white"
+                  : "text-slate-400"
+              }`}
+            >
+              EN
+            </button>
+          </div>
+
           <div className="mt-5">
             <Link
               href="/demo"
               onClick={handleNavClick}
               className="block w-full rounded-lg bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-primary/40"
             >
-              Essai gratuit
+              {t.nav.cta[lang]}
             </Link>
           </div>
         </div>

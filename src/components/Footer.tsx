@@ -1,20 +1,26 @@
+"use client";
+
 import Image from "next/image";
-
-const productLinks = [
-  { label: "Fonctionnalités", href: "#features" },
-  { label: "Solutions", href: "#solutions" },
-  { label: "Tarifs", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
-];
-
-const companyLinks = [
-  { label: "À propos", href: "#about" },
-  { label: "Blog", href: "#blog" },
-  { label: "Carrières", href: "#careers" },
-  { label: "Contact", href: "#contact" },
-];
+import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 
 export default function Footer() {
+  const { lang } = useLang();
+
+  const productLinks = [
+    { label: t.nav.features[lang], href: "#features" },
+    { label: t.nav.solutions[lang], href: "#solutions" },
+    { label: t.nav.pricing[lang], href: "#pricing" },
+    { label: t.nav.faq[lang], href: "#faq" },
+  ];
+
+  const companyLinks = [
+    { label: t.footer.about[lang], href: "#about" },
+    { label: t.footer.blog[lang], href: "#blog" },
+    { label: t.footer.careers[lang], href: "#careers" },
+    { label: t.footer.contact[lang], href: "#contact" },
+  ];
+
   return (
     <footer className="bg-surface-dark border-t border-white/5">
       <div className="mx-auto max-w-7xl px-4 py-16">
@@ -32,14 +38,13 @@ export default function Footer() {
               />
             </a>
             <p className="mt-4 max-w-xs text-slate-400">
-              Agents IA conversationnels personnalisés pour automatiser vos
-              appels et booster votre croissance. Un produit Wevlap.
+              {t.footer.description[lang]}
             </p>
           </div>
 
           {/* Column 2 — Produit */}
           <div>
-            <h3 className="mb-4 font-semibold text-white">Produit</h3>
+            <h3 className="mb-4 font-semibold text-white">{t.footer.product[lang]}</h3>
             <ul className="space-y-3">
               {productLinks.map((link) => (
                 <li key={link.href}>
@@ -56,7 +61,7 @@ export default function Footer() {
 
           {/* Column 3 — Entreprise */}
           <div>
-            <h3 className="mb-4 font-semibold text-white">Entreprise</h3>
+            <h3 className="mb-4 font-semibold text-white">{t.footer.company[lang]}</h3>
             <ul className="space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.href}>
@@ -73,7 +78,7 @@ export default function Footer() {
 
           {/* Column 4 — Contact */}
           <div>
-            <h3 className="mb-4 font-semibold text-white">Contact</h3>
+            <h3 className="mb-4 font-semibold text-white">{t.footer.contact[lang]}</h3>
             <ul className="space-y-3 text-slate-400">
               <li>
                 <a
@@ -102,21 +107,20 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-slate-500">
-            &copy; 2026 Callaps &mdash; Wevlap (WH Consulting). Tous droits
-            réservés.
+            {t.footer.copyright[lang]}
           </p>
           <div className="flex gap-6">
             <a
               href="#legal"
               className="text-sm text-slate-500 transition-colors duration-200 hover:text-slate-300"
             >
-              Mentions légales
+              {t.footer.legal[lang]}
             </a>
             <a
               href="#privacy"
               className="text-sm text-slate-500 transition-colors duration-200 hover:text-slate-300"
             >
-              Confidentialité
+              {t.footer.privacy[lang]}
             </a>
           </div>
         </div>

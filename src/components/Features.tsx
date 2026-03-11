@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 
 const features = [
   {
@@ -9,11 +11,6 @@ const features = [
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
       </svg>
     ),
-    title: "Appels automatisés",
-    description:
-      "Gérez des centaines d\u2019appels simultanément. Vos agents IA répondent instantanément, 24h/24, sans temps d\u2019attente.",
-    metric: "500+",
-    metricLabel: "appels/heure",
     accentColor: "from-cyan-500 to-blue-600",
     glowColor: "bg-cyan-500/20",
     iconBg: "bg-cyan-500/10",
@@ -30,11 +27,6 @@ const features = [
         <circle cx="12" cy="9" r="2" />
       </svg>
     ),
-    title: "IA Conversationnelle",
-    description:
-      "Compréhension naturelle du langage. Vos agents comprennent les nuances et répondent de manière fluide et humaine.",
-    metric: "98%",
-    metricLabel: "compréhension",
     accentColor: "from-violet-500 to-purple-600",
     glowColor: "bg-violet-500/20",
     iconBg: "bg-violet-500/10",
@@ -48,11 +40,6 @@ const features = [
         <path d="M7 16l4-8 4 4 5-10" />
       </svg>
     ),
-    title: "Analytics avancés",
-    description:
-      "Tableaux de bord en temps réel. Analysez les performances, le sentiment client et les tendances d\u2019appels.",
-    metric: "360°",
-    metricLabel: "vue complète",
     accentColor: "from-emerald-500 to-teal-600",
     glowColor: "bg-emerald-500/20",
     iconBg: "bg-emerald-500/10",
@@ -72,11 +59,6 @@ const features = [
         <path d="M10 18h4" />
       </svg>
     ),
-    title: "Intégration CRM",
-    description:
-      "Connexion native avec vos outils : HubSpot, Salesforce, Pipedrive et plus encore.",
-    metric: "50+",
-    metricLabel: "intégrations",
     accentColor: "from-orange-500 to-amber-600",
     glowColor: "bg-orange-500/20",
     iconBg: "bg-orange-500/10",
@@ -90,11 +72,6 @@ const features = [
         <path d="M9 12l2 2 4-4" />
       </svg>
     ),
-    title: "Sécurité & RGPD",
-    description:
-      "Données hébergées en France. Conformité RGPD totale. Chiffrement de bout en bout.",
-    metric: "100%",
-    metricLabel: "conforme RGPD",
     accentColor: "from-rose-500 to-pink-600",
     glowColor: "bg-rose-500/20",
     iconBg: "bg-rose-500/10",
@@ -108,11 +85,6 @@ const features = [
         <path d="M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17" />
       </svg>
     ),
-    title: "100% Personnalisable",
-    description:
-      "Scripts d\u2019appels, voix, tonalité, scénarios — tout est configurable selon votre marque.",
-    metric: "\u221E",
-    metricLabel: "possibilités",
     accentColor: "from-sky-500 to-indigo-600",
     glowColor: "bg-sky-500/20",
     iconBg: "bg-sky-500/10",
@@ -199,9 +171,11 @@ function CardPattern({ type }: { type: string }) {
 function FeatureCard({
   feature,
   index,
+  lang,
 }: {
   feature: (typeof features)[0];
   index: number;
+  lang: "fr" | "en";
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -284,29 +258,29 @@ function FeatureCard({
             </div>
             <div className="text-right">
               <div className={`text-2xl font-bold bg-gradient-to-r ${feature.accentColor} bg-clip-text text-transparent`}>
-                {feature.metric}
+                {t.features.cards[index].metric[lang]}
               </div>
               <div className="text-[11px] uppercase tracking-wider text-slate-500">
-                {feature.metricLabel}
+                {t.features.cards[index].metricLabel[lang]}
               </div>
             </div>
           </div>
 
           {/* Title */}
           <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-white/90 transition-colors">
-            {feature.title}
+            {t.features.cards[index].title[lang]}
           </h3>
 
           {/* Description */}
           <p className="text-slate-400 leading-relaxed text-[15px]">
-            {feature.description}
+            {t.features.cards[index].description[lang]}
           </p>
 
           {/* Bottom accent line */}
           <div className="mt-6 flex items-center gap-2">
             <div className={`h-[2px] w-8 rounded-full bg-gradient-to-r ${feature.accentColor} opacity-60 group-hover:w-16 group-hover:opacity-100 transition-all duration-500`} />
             <span className="text-xs text-slate-500 group-hover:text-slate-400 transition-colors">
-              En savoir plus
+              {t.features.learnMore[lang]}
             </span>
           </div>
         </div>
@@ -316,6 +290,8 @@ function FeatureCard({
 }
 
 export default function Features() {
+  const { lang } = useLang();
+
   return (
     <section id="features" className="relative bg-surface-dark py-28 px-4 overflow-hidden">
       {/* Section background glow */}
@@ -328,22 +304,21 @@ export default function Features() {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
             </svg>
-            Fonctionnalités clés
+            {t.features.badge[lang]}
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-            Des agents IA qui{" "}
-            <span className="gradient-text">transforment votre business</span>
+            {t.features.title1[lang]}
+            <span className="gradient-text">{t.features.titleHighlight[lang]}</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Nos agents conversationnels s&apos;adaptent à vos besoins et
-            s&apos;intègrent à vos outils existants.
+            {t.features.subtitle[lang]}
           </p>
         </div>
 
         {/* Feature cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <FeatureCard key={feature.title} feature={feature} index={index} />
+            <FeatureCard key={index} feature={feature} index={index} lang={lang} />
           ))}
         </div>
       </div>

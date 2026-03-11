@@ -1,26 +1,22 @@
+"use client";
+
+import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
+
 const testimonials = [
   {
     name: "Sophie Martin",
     initials: "SM",
-    role: "Directrice Commerciale, TechVision",
-    quote:
-      "Depuis que nous utilisons Callaps, notre taux de prise de RDV a augment\u00e9 de 45%. L\u2019agent IA est bluffant de naturel.",
     stars: 5,
   },
   {
     name: "Marc Dupont",
     initials: "MD",
-    role: "CEO, LogiPlus",
-    quote:
-      "Le service client automatis\u00e9 nous a permis de r\u00e9duire nos co\u00fbts de 60% tout en am\u00e9liorant la satisfaction. Un game changer.",
     stars: 5,
   },
   {
     name: "Amira Benali",
     initials: "AB",
-    role: "Responsable SAV, MediCare+",
-    quote:
-      "La mise en place a \u00e9t\u00e9 rapide et l\u2019\u00e9quipe Wevlap nous a accompagn\u00e9s \u00e0 chaque \u00e9tape. Nos clients ne font plus la diff\u00e9rence avec un humain.",
     stars: 5,
   },
 ];
@@ -39,22 +35,25 @@ function StarIcon() {
 }
 
 export default function Testimonials() {
+  const { lang } = useLang();
+
   return (
     <section className="bg-surface-dark py-24 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">Ils nous font confiance</span>
+            {t.testimonials.title1[lang]}{" "}
+            <span className="gradient-text">{t.testimonials.titleHighlight[lang]}</span>
           </h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            D&eacute;couvrez comment nos clients transforment leur communication.
+            {t.testimonials.subtitle[lang]}
           </p>
         </div>
 
         {/* Testimonial cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
+          {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.name}
               className="relative glass rounded-2xl p-8"
@@ -78,7 +77,7 @@ export default function Testimonials() {
 
               {/* Quote */}
               <p className="text-slate-300 leading-relaxed mb-6">
-                &ldquo;{testimonial.quote}&rdquo;
+                &ldquo;{t.testimonials.items[index].quote[lang]}&rdquo;
               </p>
 
               {/* Author */}
@@ -88,7 +87,7 @@ export default function Testimonials() {
                 </div>
                 <div>
                   <p className="text-white font-semibold">{testimonial.name}</p>
-                  <p className="text-slate-400 text-sm">{testimonial.role}</p>
+                  <p className="text-slate-400 text-sm">{t.testimonials.items[index].role[lang]}</p>
                 </div>
               </div>
             </div>
