@@ -370,11 +370,14 @@ function CalendarBooking() {
     setStep("form");
   }
 
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!selectedDate || !selectedSlot) return;
 
     setStep("submitting");
+    setSubmitError(null);
 
     try {
       const res = await fetch("/api/booking", {
@@ -394,13 +397,16 @@ function CalendarBooking() {
 
       const data = await res.json();
 
-      if (data.calendlyUrl) {
-        window.open(data.calendlyUrl, "_blank", "noopener,noreferrer");
+      if (!res.ok) {
+        setSubmitError(data.error || "Une erreur est survenue");
+        setStep("form");
+        return;
       }
 
       setStep("confirmed");
     } catch {
-      setStep("confirmed");
+      setSubmitError("Erreur de connexion. Veuillez réessayer.");
+      setStep("form");
     }
   }
 
@@ -725,6 +731,12 @@ function CalendarBooking() {
               />
             </div>
 
+            {submitError && (
+              <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                {submitError}
+              </div>
+            )}
+
             <button
               type="submit"
               disabled={step === "submitting"}
@@ -735,8 +747,8 @@ function CalendarBooking() {
               }`}
             >
               {step === "submitting"
-                ? "Redirection vers Calendly..."
-                : "Confirmer et réserver sur Calendly"}
+                ? "Envoi en cours..."
+                : "Confirmer le rendez-vous"}
             </button>
           </form>
         </div>
@@ -760,10 +772,10 @@ function CalendarBooking() {
           </div>
 
           <h3 className="text-2xl font-bold text-white mb-2">
-            Finalisez votre rendez-vous !
+            Rendez-vous confirmé !
           </h3>
           <p className="text-slate-400 mb-6">
-            Calendly s&apos;est ouvert dans un nouvel onglet pour confirmer votre créneau.
+            Une confirmation a été envoyée à votre adresse email.
           </p>
 
           <div className="inline-flex flex-col items-start gap-3 p-6 rounded-2xl bg-white/5 border border-white/10 text-left mb-8">
@@ -818,27 +830,18 @@ function CalendarBooking() {
                 strokeWidth="2"
                 className="text-emerald-400"
               >
-                <polyline points="20 6 9 17 4 12" />
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
               </svg>
               <span className="text-white text-sm">
-                Vos informations ont été pré-remplies
+                Confirmation envoyée par email
               </span>
             </div>
           </div>
 
-          <a
-            href="https://calendly.com/habib-wassim75/premier-echange-decouverte-de-vos-besoins-wevlap"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold text-sm shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-105 transition-all duration-300 mb-6"
-          >
-            Ouvrir Calendly
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-          </a>
+          <p className="text-slate-500 text-sm mb-6">
+            Notre équipe vous contactera à l&apos;heure convenue. Si vous avez besoin de modifier ce rendez-vous, répondez directement à l&apos;email de confirmation.
+          </p>
 
           <Link
             href="/"
