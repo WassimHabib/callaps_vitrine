@@ -308,9 +308,9 @@ function CalendarBooking() {
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
-  const [step, setStep] = useState<"calendar" | "slots" | "form" | "confirmed">(
-    "calendar"
-  );
+  const [step, setStep] = useState<
+    "calendar" | "slots" | "form" | "submitting" | "confirmed"
+  >("calendar");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -370,9 +370,38 @@ function CalendarBooking() {
     setStep("form");
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setStep("confirmed");
+    if (!selectedDate || !selectedSlot) return;
+
+    setStep("submitting");
+
+    try {
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          date: selectedDate.toLocaleDateString("fr-FR", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          }),
+          slot: selectedSlot,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.calendlyUrl) {
+        window.open(data.calendlyUrl, "_blank", "noopener,noreferrer");
+      }
+
+      setStep("confirmed");
+    } catch {
+      setStep("confirmed");
+    }
   }
 
   const daysInMonth = getDaysInMonth(currentMonth, currentYear);
@@ -568,7 +597,7 @@ function CalendarBooking() {
       )}
 
       {/* Form view */}
-      {step === "form" && selectedDate && selectedSlot && (
+      {(step === "form" || step === "submitting") && selectedDate && selectedSlot && (
         <div className="animate-fade-in-up">
           <button
             onClick={() => setStep("slots")}
@@ -698,9 +727,16 @@ function CalendarBooking() {
 
             <button
               type="submit"
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary to-accent text-white font-semibold text-sm shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.01] active:scale-[0.99] transition-all duration-300"
+              disabled={step === "submitting"}
+              className={`w-full py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 ${
+                step === "submitting"
+                  ? "bg-white/10 text-slate-400 cursor-wait"
+                  : "bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.01] active:scale-[0.99]"
+              }`}
             >
-              Confirmer le rendez-vous
+              {step === "submitting"
+                ? "Redirection vers Calendly..."
+                : "Confirmer et réserver sur Calendly"}
             </button>
           </form>
         </div>
@@ -724,10 +760,10 @@ function CalendarBooking() {
           </div>
 
           <h3 className="text-2xl font-bold text-white mb-2">
-            Rendez-vous confirmé !
+            Finalisez votre rendez-vous !
           </h3>
           <p className="text-slate-400 mb-6">
-            Nous avons hâte d&apos;échanger avec vous.
+            Calendly s&apos;est ouvert dans un nouvel onglet pour confirmer votre créneau.
           </p>
 
           <div className="inline-flex flex-col items-start gap-3 p-6 rounded-2xl bg-white/5 border border-white/10 text-left mb-8">
@@ -780,16 +816,29 @@ function CalendarBooking() {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
-                className="text-primary"
+                className="text-emerald-400"
               >
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
+                <polyline points="20 6 9 17 4 12" />
               </svg>
               <span className="text-white text-sm">
-                Confirmation envoyée par email
+                Vos informations ont été pré-remplies
               </span>
             </div>
           </div>
+
+          <a
+            href="https://calendly.com/habib-wassim75/premier-echange-decouverte-de-vos-besoins-wevlap"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold text-sm shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-105 transition-all duration-300 mb-6"
+          >
+            Ouvrir Calendly
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
 
           <Link
             href="/"
