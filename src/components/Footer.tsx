@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const productLinks = [
   { label: "Fonctionnalités", href: "#features" },
   { label: "Solutions", href: "#solutions" },
@@ -21,7 +23,13 @@ export default function Footer() {
           {/* Column 1 — Brand */}
           <div className="col-span-2 lg:col-span-1">
             <a href="#" className="inline-block">
-              <span className="gradient-text text-2xl font-bold">Callaps</span>
+              <Image
+                src="/logo.png"
+                alt="Callaps"
+                width={140}
+                height={40}
+                className="h-9 w-auto"
+              />
             </a>
             <p className="mt-4 max-w-xs text-slate-400">
               Agents IA conversationnels personnalisés pour automatiser vos

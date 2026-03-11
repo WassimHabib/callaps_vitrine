@@ -16,6 +16,10 @@ export const metadata: Metadata = {
     "service client IA",
     "Wevlap",
   ],
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

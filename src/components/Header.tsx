@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const navLinks = [
   { label: "Fonctionnalités", href: "#features" },
@@ -31,11 +33,16 @@ export default function Header() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
-          <span className="gradient-text text-2xl font-extrabold tracking-tight">
-            Callaps
-          </span>
-        </a>
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/logo.png"
+            alt="Callaps"
+            width={140}
+            height={40}
+            className="h-9 w-auto"
+            priority
+          />
+        </Link>
 
         {/* Desktop nav links */}
         <ul className="hidden md:flex items-center gap-8">
@@ -53,12 +60,12 @@ export default function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <a
-            href="#pricing"
+          <Link
+            href="/demo"
             className="inline-flex items-center rounded-lg bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-primary/40 hover:scale-105"
           >
             Essai gratuit
-          </a>
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -111,13 +118,13 @@ export default function Header() {
             ))}
           </ul>
           <div className="mt-5">
-            <a
-              href="#pricing"
+            <Link
+              href="/demo"
               onClick={handleNavClick}
               className="block w-full rounded-lg bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-primary/40"
             >
               Essai gratuit
-            </a>
+            </Link>
           </div>
         </div>
       </div>

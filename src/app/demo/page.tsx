@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 /* ─── Données du calendrier ─── */
 const AVAILABLE_SLOTS = [
@@ -822,8 +823,15 @@ export default function DemoPage() {
 
       {/* Header */}
       <header className="relative z-20 flex items-center justify-between max-w-7xl mx-auto px-6 py-6">
-        <Link href="/" className="text-2xl font-bold gradient-text">
-          Callaps
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="Callaps"
+            width={140}
+            height={40}
+            className="h-9 w-auto"
+            priority
+          />
         </Link>
         <Link
           href="/"
