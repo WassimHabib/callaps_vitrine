@@ -31,12 +31,12 @@ export default function HowItWorks() {
 
           <div className="flex flex-col gap-12">
             {t.howItWorks.steps.map((step, index) => (
-              <div key={stepNumbers[index]} className="relative pl-16 md:pl-24">
+              <div key={stepNumbers[index]} className="relative pl-12 md:pl-24">
                 {/* Timeline dot */}
                 <div className="absolute left-4 md:left-6 top-8 w-4 h-4 rounded-full bg-gradient-to-br from-primary to-accent ring-4 ring-surface/80" />
 
                 {/* Card */}
-                <div className="glass rounded-2xl p-8">
+                <div className="glass rounded-2xl p-5 md:p-8">
                   {/* Step number & badge row */}
                   <div className="flex items-center gap-4 mb-4">
                     <span className="text-5xl font-bold gradient-text leading-none">

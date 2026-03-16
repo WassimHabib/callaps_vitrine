@@ -3,42 +3,87 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, phone, company, message, date, slot } = body;
+    const { name, email, phone, company, message, start } = body;
 
-    if (!name || !email || !date || !slot) {
+    if (!name || !email || !start) {
       return NextResponse.json(
         { error: "Champs obligatoires manquants" },
         { status: 400 }
       );
     }
 
-    // Log la demande (visible dans les logs serveur)
-    console.log("=== Nouvelle demande de RDV ===");
-    console.log(`Nom: ${name}`);
-    console.log(`Email: ${email}`);
-    console.log(`Téléphone: ${phone || "Non renseigné"}`);
-    console.log(`Entreprise: ${company || "Non renseignée"}`);
-    console.log(`Date: ${date}`);
-    console.log(`Créneau: ${slot}`);
-    console.log(`Message: ${message || "Aucun"}`);
-    console.log("==============================");
+    const apiKey = process.env.CAL_API_KEY;
+    const eventTypeId = Number(process.env.CAL_EVENT_TYPE_ID);
 
-    // Construire l'URL Calendly pré-remplie
-    const calendlyBase =
-      "https://calendly.com/habib-wassim75/premier-echange-decouverte-de-vos-besoins-wevlap";
-    const params = new URLSearchParams();
-    params.set("name", name);
-    params.set("email", email);
-    if (message) params.set("a1", message);
+    if (!apiKey || !eventTypeId) {
+      console.error("CAL_API_KEY or CAL_EVENT_TYPE_ID not configured");
+      return NextResponse.json(
+        { error: "Configuration serveur manquante" },
+        { status: 500 }
+      );
+    }
 
-    const calendlyUrl = `${calendlyBase}?${params.toString()}`;
+    // Build notes
+    const notes = [
+      company ? `Entreprise: ${company}` : "",
+      phone ? `Téléphone: ${phone}` : "",
+      message || "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    // Create booking via Cal.com API v1
+    // `start` is the full ISO string from Cal.com slots (e.g. "2026-03-19T09:00:00+01:00")
+    const calRes = await fetch(
+      `https://api.cal.com/v1/bookings?apiKey=${apiKey}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          eventTypeId,
+          start,
+          timeZone: "Europe/Paris",
+          language: "fr",
+          responses: {
+            name,
+            email,
+            notes: notes || undefined,
+            phone: phone || undefined,
+          },
+          metadata: {
+            source: "callaps-website",
+            company: company || undefined,
+          },
+        }),
+      }
+    );
+
+    const calData = await calRes.json();
+
+    if (!calRes.ok) {
+      console.error("Cal.com API error:", JSON.stringify(calData));
+      return NextResponse.json(
+        {
+          error: "Erreur lors de la réservation",
+          details: calData.message || calData.error || "Créneau indisponible",
+        },
+        { status: calRes.status }
+      );
+    }
+
+    console.log("=== Booking créé via Cal.com ===");
+    console.log(`Nom: ${name} | Email: ${email}`);
+    console.log(`Start: ${start}`);
+    console.log(`Booking ID: ${calData.id || calData.uid}`);
+    console.log("================================");
 
     return NextResponse.json({
       success: true,
-      calendlyUrl,
-      message: "Demande enregistrée",
+      bookingId: calData.id || calData.uid,
+      message: "Rendez-vous confirmé",
     });
-  } catch {
+  } catch (err) {
+    console.error("Booking route error:", err);
     return NextResponse.json(
       { error: "Erreur serveur" },
       { status: 500 }

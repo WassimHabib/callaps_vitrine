@@ -36,13 +36,13 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up animation-delay-400">
           <Link
             href="/demo"
-            className="px-8 py-3.5 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold text-lg shadow-lg shadow-primary/25 transition-transform duration-300 hover:scale-105"
+            className="px-6 py-3 md:px-8 md:py-3.5 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold text-base md:text-lg shadow-lg shadow-primary/25 transition-transform duration-300 hover:scale-105"
           >
             {t.hero.ctaPrimary[lang]}
           </Link>
           <Link
             href="/demo"
-            className="px-8 py-3.5 rounded-full glass text-white font-semibold text-lg transition-all duration-300 hover:scale-105 hover:border-white/20"
+            className="px-6 py-3 md:px-8 md:py-3.5 rounded-full glass text-white font-semibold text-base md:text-lg transition-all duration-300 hover:scale-105 hover:border-white/20"
           >
             {t.hero.ctaSecondary[lang]}
           </Link>

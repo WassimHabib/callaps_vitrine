@@ -24,6 +24,7 @@ export default function Header() {
     { label: t.nav.solutions[lang], href: "#solutions" },
     { label: t.nav.pricing[lang], href: "#pricing" },
     { label: t.nav.faq[lang], href: "#faq" },
+    { label: "Blog", href: "/blog" },
   ];
 
   return (
@@ -40,9 +41,9 @@ export default function Header() {
           <Image
             src="/logo.png"
             alt="Callaps"
-            width={140}
-            height={40}
-            className="h-9 w-auto"
+            width={360}
+            height={100}
+            className={`w-auto transition-all duration-300 ${scrolled ? "h-10 md:h-12" : "h-20 md:h-28"}`}
             priority
           />
         </Link>

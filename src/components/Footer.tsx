@@ -16,7 +16,7 @@ export default function Footer() {
 
   const companyLinks = [
     { label: t.footer.about[lang], href: "#about" },
-    { label: t.footer.blog[lang], href: "#blog" },
+    { label: t.footer.blog[lang], href: "/blog" },
     { label: t.footer.careers[lang], href: "#careers" },
     { label: t.footer.contact[lang], href: "#contact" },
   ];
@@ -32,9 +32,9 @@ export default function Footer() {
               <Image
                 src="/logo.png"
                 alt="Callaps"
-                width={140}
-                height={40}
-                className="h-9 w-auto"
+                width={360}
+                height={100}
+                className="h-14 md:h-24 w-auto"
               />
             </a>
             <p className="mt-4 max-w-xs text-slate-400">

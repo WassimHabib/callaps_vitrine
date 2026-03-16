@@ -4,6 +4,19 @@ import { useState } from "react";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: t.faq.items.map((item) => ({
+    "@type": "Question",
+    name: item.question.fr,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer.fr,
+    },
+  })),
+};
+
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const { lang } = useLang();
@@ -14,9 +27,13 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="bg-surface/50 py-24 px-4">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">
             <span className="gradient-text">{t.faq.title[lang]}</span>
           </h2>
           <p className="text-slate-400 text-lg">
