@@ -10,13 +10,12 @@ import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
-import TopBanner from "@/components/TopBanner";
+
 import FloatingContact from "@/components/FloatingContact";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-surface-dark">
-      <TopBanner />
       <Header />
       <Hero />
       <TrustBar />
