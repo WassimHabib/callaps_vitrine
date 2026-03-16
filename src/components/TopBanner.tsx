@@ -6,8 +6,8 @@ import { useLang } from "@/lib/LanguageContext";
 
 const text = {
   message: {
-    fr: "\u{1F680} Offre de lancement : audit t\u00e9l\u00e9phonique gratuit \u2014 Places limit\u00e9es",
-    en: "\u{1F680} Launch offer: free phone audit \u2014 Limited spots",
+    fr: "\u{1F525} Offre de lancement : -30% sur votre abonnement \u2014 Places limit\u00e9es",
+    en: "\u{1F525} Launch offer: 30% off your subscription \u2014 Limited spots",
   },
   cta: {
     fr: "En profiter",
