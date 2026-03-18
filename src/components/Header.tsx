@@ -21,7 +21,6 @@ export default function Header() {
 
   const navLinks = [
     { label: t.nav.features[lang], href: "#features" },
-    { label: t.nav.solutions[lang], href: "#solutions" },
     { label: t.nav.pricing[lang], href: "#pricing" },
     { label: t.nav.faq[lang], href: "#faq" },
     { label: "Blog", href: "/blog" },
@@ -29,50 +28,59 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "glass shadow-lg shadow-primary/5"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 w-full z-50 bg-white transition-shadow duration-300 ${
+        scrolled ? "shadow-sm" : ""
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        {/* Logo — left */}
+        <Link href="/" className="flex-shrink-0">
           <Image
             src="/logo.png"
             alt="Callaps"
             width={360}
             height={100}
-            className={`w-auto transition-all duration-300 ${scrolled ? "h-10 md:h-12" : "h-20 md:h-28"}`}
+            className={`w-auto transition-all duration-300 ${
+              scrolled ? "h-8 md:h-10" : "h-10 md:h-12"
+            }`}
             priority
           />
         </Link>
 
-        {/* Desktop nav links */}
-        <ul className="hidden md:flex items-center gap-8">
+        {/* Desktop nav links — centered */}
+        <ul className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-white"
-              >
-                {link.label}
-              </a>
+              {link.href.startsWith("/") ? (
+                <Link
+                  href={link.href}
+                  className="text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  href={link.href}
+                  className="text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"
+                >
+                  {link.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
 
-        {/* Desktop language selector + CTA */}
+        {/* Desktop right — language selector + CTA */}
         <div className="hidden md:flex items-center gap-4">
           {/* Language selector */}
-          <div className="flex items-center gap-1 rounded-lg bg-white/5 p-1">
+          <div className="flex items-center gap-1 rounded-lg border border-gray-200 p-1">
             <button
               type="button"
               onClick={() => setLang("fr")}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors duration-200 cursor-pointer ${
                 lang === "fr"
-                  ? "bg-white/10 text-white"
-                  : "text-slate-400"
+                  ? "bg-gray-100 text-gray-900"
+                  : "text-gray-500 hover:text-gray-700"
               }`}
             >
               FR
@@ -80,10 +88,10 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setLang("en")}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors duration-200 cursor-pointer ${
                 lang === "en"
-                  ? "bg-white/10 text-white"
-                  : "text-slate-400"
+                  ? "bg-gray-100 text-gray-900"
+                  : "text-gray-500 hover:text-gray-700"
               }`}
             >
               EN
@@ -92,7 +100,7 @@ export default function Header() {
 
           <Link
             href="/demo"
-            className="inline-flex items-center rounded-lg bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-primary/40 hover:scale-105"
+            className="inline-flex items-center rounded-lg bg-[#2563eb] px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#1d4ed8]"
           >
             {t.nav.cta[lang]}
           </Link>
@@ -104,7 +112,7 @@ export default function Header() {
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((prev) => !prev)}
-          className="relative flex md:hidden h-10 w-10 items-center justify-center rounded-lg text-slate-300 transition-colors hover:text-white"
+          className="relative flex md:hidden h-10 w-10 items-center justify-center rounded-lg text-gray-600 transition-colors hover:text-gray-900"
         >
           <span className="sr-only">Menu</span>
           <div className="flex flex-col items-center justify-center gap-[5px]">
@@ -127,36 +135,46 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile slide-down menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
           mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="glass mx-4 mb-4 rounded-xl px-6 py-5">
+        <div className="bg-white border-t border-gray-100 px-6 py-5">
           <ul className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={handleNavClick}
-                  className="block text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-white"
-                >
-                  {link.label}
-                </a>
+                {link.href.startsWith("/") ? (
+                  <Link
+                    href={link.href}
+                    onClick={handleNavClick}
+                    className="block text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={link.href}
+                    onClick={handleNavClick}
+                    className="block text-sm font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"
+                  >
+                    {link.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
 
           {/* Mobile language selector */}
-          <div className="mt-4 flex items-center gap-1 rounded-lg bg-white/5 p-1 w-fit">
+          <div className="mt-4 flex items-center gap-1 rounded-lg border border-gray-200 p-1 w-fit">
             <button
               type="button"
               onClick={() => setLang("fr")}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors duration-200 cursor-pointer ${
                 lang === "fr"
-                  ? "bg-white/10 text-white"
-                  : "text-slate-400"
+                  ? "bg-gray-100 text-gray-900"
+                  : "text-gray-500 hover:text-gray-700"
               }`}
             >
               FR
@@ -164,10 +182,10 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setLang("en")}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors duration-200 cursor-pointer ${
                 lang === "en"
-                  ? "bg-white/10 text-white"
-                  : "text-slate-400"
+                  ? "bg-gray-100 text-gray-900"
+                  : "text-gray-500 hover:text-gray-700"
               }`}
             >
               EN
@@ -178,7 +196,7 @@ export default function Header() {
             <Link
               href="/demo"
               onClick={handleNavClick}
-              className="block w-full rounded-lg bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-primary/40"
+              className="block w-full rounded-lg bg-[#2563eb] px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#1d4ed8]"
             >
               {t.nav.cta[lang]}
             </Link>

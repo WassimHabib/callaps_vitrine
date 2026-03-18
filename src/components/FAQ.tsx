@@ -26,37 +26,36 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="bg-surface/50 py-24 px-4">
+    <section id="faq" className="bg-white py-24 px-6">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-3xl mx-auto">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-4xl font-bold mb-4">
-            <span className="gradient-text">{t.faq.title[lang]}</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            {t.faq.title[lang]}
           </h2>
-          <p className="text-slate-400 text-lg">
+          <p className="text-gray-500 text-lg">
             {t.faq.subtitle[lang]}
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
+        {/* Accordion */}
+        <div>
           {t.faq.items.map((item, index) => {
             const isOpen = openIndex === index;
 
             return (
-              <div
-                key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl mb-4"
-              >
+              <div key={index} className="border-b border-gray-200">
                 <button
                   onClick={() => toggle(index)}
-                  className="w-full p-6 flex justify-between items-center text-white font-medium cursor-pointer text-left hover:bg-white/5 rounded-xl transition-colors"
+                  className="w-full py-5 flex justify-between items-center text-gray-900 font-medium cursor-pointer text-left transition-colors"
                 >
-                  <span>{t.faq.items[index].question[lang]}</span>
+                  <span>{item.question[lang]}</span>
                   <svg
-                    className={`w-5 h-5 flex-shrink-0 ml-4 transition-transform duration-300 ${
+                    className={`w-5 h-5 flex-shrink-0 ml-4 text-gray-400 transition-transform duration-300 ${
                       isOpen ? "rotate-180" : ""
                     }`}
                     fill="none"
@@ -73,8 +72,8 @@ export default function FAQ() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 text-slate-400">
-                    {t.faq.items[index].answer[lang]}
+                  <div className="pb-5 text-gray-500 leading-relaxed">
+                    {item.answer[lang]}
                   </div>
                 )}
               </div>

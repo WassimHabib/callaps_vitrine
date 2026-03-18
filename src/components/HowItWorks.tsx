@@ -9,57 +9,43 @@ export default function HowItWorks() {
   const { lang } = useLang();
 
   return (
-    <section className="relative bg-surface/50 py-24 px-4 overflow-hidden">
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
-
-      <div className="relative z-10 max-w-7xl mx-auto">
+    <section className="bg-white py-24 px-6">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">{t.howItWorks.title[lang]}</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            {t.howItWorks.title[lang]}
           </h2>
-          <p className="text-lg text-slate-400 max-w-xl mx-auto">
+          <p className="text-gray-500 max-w-xl mx-auto">
             {t.howItWorks.subtitle[lang]}
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative max-w-3xl mx-auto">
-          {/* Connecting line */}
-          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary to-accent" />
+        {/* Steps */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {t.howItWorks.steps.map((step, index) => (
+            <div key={stepNumbers[index]} className="relative flex flex-col items-center md:items-start text-center md:text-left">
+              {/* Dashed connector (hidden on last step and on mobile) */}
+              {index < t.howItWorks.steps.length - 1 && (
+                <div className="hidden md:block absolute top-6 left-full w-full border-t border-dashed border-gray-200" />
+              )}
 
-          <div className="flex flex-col gap-12">
-            {t.howItWorks.steps.map((step, index) => (
-              <div key={stepNumbers[index]} className="relative pl-12 md:pl-24">
-                {/* Timeline dot */}
-                <div className="absolute left-4 md:left-6 top-8 w-4 h-4 rounded-full bg-gradient-to-br from-primary to-accent ring-4 ring-surface/80" />
+              {/* Step number */}
+              <span className="text-5xl font-bold text-blue-100 leading-none mb-3">
+                {stepNumbers[index]}
+              </span>
 
-                {/* Card */}
-                <div className="glass rounded-2xl p-5 md:p-8">
-                  {/* Step number & badge row */}
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="text-5xl font-bold gradient-text leading-none">
-                      {stepNumbers[index]}
-                    </span>
-                    <span className="bg-primary/10 text-primary text-sm font-medium rounded-full px-3 py-1">
-                      {step.badge[lang]}
-                    </span>
-                  </div>
+              {/* Title */}
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                {step.title[lang]}
+              </h3>
 
-                  {/* Title */}
-                  <h3 className="text-xl md:text-2xl font-semibold text-white mb-3">
-                    {step.title[lang]}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-slate-400 leading-relaxed">
-                    {step.description[lang]}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+              {/* Description */}
+              <p className="text-sm text-gray-500 leading-relaxed">
+                {step.description[lang]}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

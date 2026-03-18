@@ -8,59 +8,227 @@ export default function Hero() {
   const { lang } = useLang();
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-      {/* Large glow effect */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+    <section className="bg-[#fafafa] py-20 px-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Two-column layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left column - Text */}
+          <div>
+            {/* Badge */}
+            <span className="inline-block bg-blue-50 text-blue-600 rounded-full px-3 py-1 text-sm font-medium mb-6">
+              Agent vocal IA
+            </span>
 
-      {/* Floating decorative elements */}
-      <div className="absolute top-20 left-[10%] w-3 h-3 rounded-full bg-primary/30 animate-float animate-pulse-glow" />
-      <div className="absolute top-40 right-[15%] w-2 h-2 rounded-full bg-accent/40 animate-float animation-delay-200" />
-      <div className="absolute bottom-32 left-[20%] w-4 h-4 rounded-full bg-primary/20 animate-float animation-delay-400" />
-      <div className="absolute top-[30%] right-[8%] w-2.5 h-2.5 rounded-full bg-accent-light/30 animate-float animation-delay-600" />
-      <div className="absolute bottom-48 right-[25%] w-3 h-3 rounded-full bg-primary-light/20 animate-float animation-delay-800" />
+            {/* Title */}
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+              {t.hero.title1[lang]}
+              <span className="gradient-text">{t.hero.titleHighlight[lang]}</span>
+            </h1>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto text-center px-6 py-20">
-        {/* Main heading */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6 animate-fade-in-up">
-          {t.hero.title1[lang]}{" "}
-          <span className="gradient-text">{t.hero.titleHighlight[lang]}</span>
-        </h1>
+            {/* Subtitle */}
+            <p className="text-lg text-gray-500 mb-8 max-w-lg">
+              {t.hero.subtitle[lang]}
+            </p>
 
-        {/* Subtitle */}
-        <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 animate-fade-in-up animation-delay-200">
-          {t.hero.subtitle[lang]}
-        </p>
+            {/* CTA Button */}
+            <div className="mb-4">
+              <Link
+                href="/demo"
+                className="inline-block bg-[#2563eb] text-white font-semibold rounded-lg px-8 py-4 shadow-lg shadow-blue-500/25 transition-all duration-300 hover:shadow-blue-500/40 hover:scale-105"
+              >
+                D&eacute;marrer gratuitement
+              </Link>
+            </div>
 
-        {/* CTA buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up animation-delay-400">
-          <Link
-            href="/demo"
-            className="px-6 py-3 md:px-8 md:py-3.5 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold text-base md:text-lg shadow-lg shadow-primary/25 transition-transform duration-300 hover:scale-105"
-          >
-            {t.hero.ctaPrimary[lang]}
-          </Link>
-          <Link
-            href="/demo"
-            className="px-6 py-3 md:px-8 md:py-3.5 rounded-full glass text-white font-semibold text-base md:text-lg transition-all duration-300 hover:scale-105 hover:border-white/20"
-          >
-            {t.hero.ctaSecondary[lang]}
-          </Link>
+            {/* Trust line */}
+            <p className="text-sm text-gray-400">
+              Gratuit &middot; Sans engagement &middot; R&eacute;sultat en 24h
+            </p>
+          </div>
+
+          {/* Right column - Mockup */}
+          <div className="rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 aspect-square flex items-center justify-center">
+            {/* Stylized phone/chat mockup */}
+            <svg
+              viewBox="0 0 320 480"
+              className="w-56 md:w-64 drop-shadow-xl"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Phone body */}
+              <rect
+                x="16"
+                y="0"
+                width="288"
+                height="480"
+                rx="36"
+                fill="white"
+                stroke="#e5e7eb"
+                strokeWidth="2"
+              />
+              {/* Notch */}
+              <rect
+                x="112"
+                y="12"
+                width="96"
+                height="24"
+                rx="12"
+                fill="#f3f4f6"
+              />
+              {/* Header bar */}
+              <rect x="32" y="56" width="256" height="48" rx="8" fill="#2563eb" />
+              <circle cx="56" cy="80" r="12" fill="white" fillOpacity="0.3" />
+              <rect
+                x="76"
+                y="72"
+                width="80"
+                height="8"
+                rx="4"
+                fill="white"
+                fillOpacity="0.9"
+              />
+              <rect
+                x="76"
+                y="84"
+                width="52"
+                height="6"
+                rx="3"
+                fill="white"
+                fillOpacity="0.5"
+              />
+              {/* Chat bubbles - incoming */}
+              <rect
+                x="40"
+                y="124"
+                width="160"
+                height="40"
+                rx="16"
+                fill="#f3f4f6"
+              />
+              <rect x="52" y="136" width="100" height="6" rx="3" fill="#d1d5db" />
+              <rect x="52" y="148" width="64" height="6" rx="3" fill="#d1d5db" />
+              {/* Chat bubbles - outgoing */}
+              <rect
+                x="120"
+                y="180"
+                width="168"
+                height="40"
+                rx="16"
+                fill="#2563eb"
+              />
+              <rect
+                x="136"
+                y="192"
+                width="120"
+                height="6"
+                rx="3"
+                fill="white"
+                fillOpacity="0.8"
+              />
+              <rect
+                x="136"
+                y="204"
+                width="80"
+                height="6"
+                rx="3"
+                fill="white"
+                fillOpacity="0.5"
+              />
+              {/* Chat bubbles - incoming */}
+              <rect
+                x="40"
+                y="236"
+                width="180"
+                height="56"
+                rx="16"
+                fill="#f3f4f6"
+              />
+              <rect x="52" y="248" width="140" height="6" rx="3" fill="#d1d5db" />
+              <rect x="52" y="260" width="100" height="6" rx="3" fill="#d1d5db" />
+              <rect x="52" y="272" width="60" height="6" rx="3" fill="#d1d5db" />
+              {/* Chat bubbles - outgoing */}
+              <rect
+                x="140"
+                y="308"
+                width="148"
+                height="40"
+                rx="16"
+                fill="#2563eb"
+              />
+              <rect
+                x="156"
+                y="320"
+                width="100"
+                height="6"
+                rx="3"
+                fill="white"
+                fillOpacity="0.8"
+              />
+              <rect
+                x="156"
+                y="332"
+                width="64"
+                height="6"
+                rx="3"
+                fill="white"
+                fillOpacity="0.5"
+              />
+              {/* Typing indicator */}
+              <rect
+                x="40"
+                y="364"
+                width="80"
+                height="36"
+                rx="16"
+                fill="#f3f4f6"
+              />
+              <circle cx="60" cy="382" r="4" fill="#d1d5db" />
+              <circle cx="76" cy="382" r="4" fill="#d1d5db" />
+              <circle cx="92" cy="382" r="4" fill="#d1d5db" />
+              {/* Input bar */}
+              <rect
+                x="32"
+                y="420"
+                width="256"
+                height="40"
+                rx="20"
+                fill="#f9fafb"
+                stroke="#e5e7eb"
+                strokeWidth="1"
+              />
+              <rect x="52" y="436" width="80" height="6" rx="3" fill="#d1d5db" />
+              <circle cx="264" cy="440" r="12" fill="#2563eb" />
+              <path
+                d="M260 440L264 436L268 440M264 436V444"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                transform="rotate(90 264 440)"
+              />
+            </svg>
+          </div>
         </div>
 
         {/* Stats row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto animate-fade-in-up animation-delay-600">
-          <div className="glass rounded-2xl p-6">
-            <p className="text-3xl font-bold gradient-text mb-1">{t.hero.stat1Value[lang]}</p>
-            <p className="text-sm text-slate-400">{t.hero.stat1Label[lang]}</p>
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 max-w-3xl mx-auto">
+          <div className="text-center px-8 py-4 sm:border-r sm:border-gray-200">
+            <p className="text-4xl font-bold text-gray-900 mb-1">
+              {t.hero.stat1Value[lang]}
+            </p>
+            <p className="text-sm text-gray-500">{t.hero.stat1Label[lang]}</p>
           </div>
-          <div className="glass rounded-2xl p-6">
-            <p className="text-3xl font-bold gradient-text mb-1">{t.hero.stat2Value[lang]}</p>
-            <p className="text-sm text-slate-400">{t.hero.stat2Label[lang]}</p>
+          <div className="text-center px-8 py-4 sm:border-r sm:border-gray-200">
+            <p className="text-4xl font-bold text-gray-900 mb-1">
+              {t.hero.stat2Value[lang]}
+            </p>
+            <p className="text-sm text-gray-500">{t.hero.stat2Label[lang]}</p>
           </div>
-          <div className="glass rounded-2xl p-6">
-            <p className="text-3xl font-bold gradient-text mb-1">{t.hero.stat3Value[lang]}</p>
-            <p className="text-sm text-slate-400">{t.hero.stat3Label[lang]}</p>
+          <div className="text-center px-8 py-4">
+            <p className="text-4xl font-bold text-gray-900 mb-1">
+              {t.hero.stat3Value[lang]}
+            </p>
+            <p className="text-sm text-gray-500">{t.hero.stat3Label[lang]}</p>
           </div>
         </div>
       </div>
