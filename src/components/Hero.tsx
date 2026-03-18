@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 
@@ -71,20 +72,27 @@ export default function Hero() {
         {/* ── Bottom: Visual showcase — phone dépasse en bas ── */}
         <div className="relative max-w-5xl mx-auto h-[450px] md:h-[520px] animate-fade-in-up animation-delay-600">
 
-          {/* ── Centre: Phone (grand, dépasse en bas) ── */}
+          {/* ── Centre: iPhone mockup image + contenu superposé ── */}
           <div
             ref={phoneRef}
-            className="absolute left-1/2 -translate-x-1/2 -bottom-32 md:-bottom-40 z-20 w-[260px] md:w-[300px]"
+            className="absolute left-1/2 -translate-x-1/2 -bottom-32 md:-bottom-44 z-20 w-[260px] md:w-[320px]"
             style={{ transition: "transform 0.1s linear" }}
           >
-            <div className="rounded-[3rem] bg-[#1a1a24] border-[3px] border-[#2a2a35] p-3 shadow-2xl shadow-black/60">
-              {/* Notch */}
-              {/* Dynamic Island */}
-              <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-7 bg-black rounded-full z-20" />
-              {/* Screen */}
-              <div className="rounded-[2.5rem] bg-gradient-to-b from-[#111118] to-[#0B0B0F] overflow-hidden">
+            {/* Mockup image container */}
+            <div className="relative">
+              {/* iPhone image */}
+              <Image
+                src="/iphone-mockup.png"
+                alt="iPhone"
+                width={800}
+                height={1200}
+                className="w-full h-auto relative z-10"
+                priority
+              />
+              {/* Screen content overlay — positionné sur l'écran du mockup */}
+              <div className="absolute top-[3.5%] left-[5.5%] right-[5.5%] bottom-[3.5%] z-20 rounded-[2rem] overflow-hidden bg-[#0B0B0F]">
                 {/* Call header */}
-                <div className="bg-accent/10 px-4 pt-7 pb-3 flex items-center gap-3">
+                <div className="bg-accent/10 px-4 pt-8 pb-3 flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent-light">
                       <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
@@ -102,30 +110,34 @@ export default function Hero() {
                 </div>
 
                 {/* Transcription */}
-                <div className="px-3 py-3 space-y-2">
+                <div className="px-3 py-3 space-y-2.5">
                   <div className="flex items-start gap-2">
-                    <span className="text-[8px] text-accent font-semibold mt-0.5 shrink-0">IA</span>
-                    <p className="text-[9px] text-slate-300 leading-relaxed">{lang === "fr" ? "Bonjour, Callaps, comment puis-je vous aider ?" : "Hello, Callaps, how can I help?"}</p>
+                    <span className="text-[9px] text-accent font-semibold mt-0.5 shrink-0">IA</span>
+                    <p className="text-[10px] text-slate-300 leading-relaxed">{lang === "fr" ? "Bonjour, Callaps, comment puis-je vous aider ?" : "Hello, Callaps, how can I help?"}</p>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span className="text-[8px] text-primary font-semibold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
-                    <p className="text-[9px] text-slate-300 leading-relaxed">{lang === "fr" ? "Je cherche une solution pour automatiser nos appels." : "I'm looking to automate our calls."}</p>
+                    <span className="text-[9px] text-primary font-semibold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
+                    <p className="text-[10px] text-slate-300 leading-relaxed">{lang === "fr" ? "Je cherche une solution pour automatiser nos appels." : "I'm looking to automate our calls."}</p>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span className="text-[8px] text-accent font-semibold mt-0.5 shrink-0">IA</span>
-                    <p className="text-[9px] text-slate-300 leading-relaxed">{lang === "fr" ? "Je peux vous aider. Combien d'appels recevez-vous par jour ?" : "I can help. How many calls do you get per day?"}</p>
+                    <span className="text-[9px] text-accent font-semibold mt-0.5 shrink-0">IA</span>
+                    <p className="text-[10px] text-slate-300 leading-relaxed">{lang === "fr" ? "Parfait ! Combien d'appels recevez-vous par jour ?" : "Great! How many calls do you get per day?"}</p>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span className="text-[8px] text-primary font-semibold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
-                    <p className="text-[9px] text-slate-300 leading-relaxed">{lang === "fr" ? "Environ 150 par jour." : "About 150 per day."}</p>
+                    <span className="text-[9px] text-primary font-semibold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
+                    <p className="text-[10px] text-slate-300 leading-relaxed">{lang === "fr" ? "Environ 150 par jour." : "About 150 per day."}</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-[9px] text-accent font-semibold mt-0.5 shrink-0">IA</span>
+                    <p className="text-[10px] text-slate-300 leading-relaxed">{lang === "fr" ? "Je vous programme un rendez-vous avec notre équipe." : "I'll schedule a meeting with our team."}</p>
                   </div>
                 </div>
 
                 {/* Bottom status */}
-                <div className="px-3 pb-3">
-                  <div className="bg-accent/10 rounded-lg px-2.5 py-2 flex items-center gap-2">
+                <div className="px-3 pb-3 mt-auto">
+                  <div className="bg-accent/10 rounded-lg px-3 py-2 flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                    <p className="text-[8px] text-accent font-medium">{lang === "fr" ? "Lead qualifié — transfert CRM..." : "Lead qualified — CRM transfer..."}</p>
+                    <p className="text-[9px] text-accent font-medium">{lang === "fr" ? "Lead qualifié — transfert CRM..." : "Lead qualified — CRM transfer..."}</p>
                   </div>
                 </div>
               </div>
