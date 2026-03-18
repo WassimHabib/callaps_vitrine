@@ -9,11 +9,8 @@ export default function HowItWorks() {
   const { lang } = useLang();
 
   return (
-    <section className="relative bg-surface/50 py-24 px-4 overflow-hidden">
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
-
-      <div className="relative z-10 max-w-7xl mx-auto">
+    <section className="bg-surface/50 py-24 px-4">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
@@ -61,6 +58,11 @@ export default function HowItWorks() {
             ))}
           </div>
         </div>
+
+        {/* Bottom note */}
+        <p className="text-sm text-slate-400 text-center mt-16">
+          {t.howItWorks.subtitle[lang]}
+        </p>
       </div>
     </section>
   );

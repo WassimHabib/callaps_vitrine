@@ -20,46 +20,51 @@ export default function Hero() {
       <div className="absolute bottom-48 right-[25%] w-3 h-3 rounded-full bg-primary-light/20 animate-float animation-delay-800" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto text-center px-6 py-20">
+      <div className="relative z-10 max-w-5xl mx-auto text-center px-6 py-20">
         {/* Main heading */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6 animate-fade-in-up">
-          {t.hero.title1[lang]}{" "}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight tracking-tight mb-6 animate-fade-in-up">
+          <span className="text-white">{t.hero.title1[lang]}</span>
           <span className="gradient-text">{t.hero.titleHighlight[lang]}</span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 animate-fade-in-up animation-delay-200">
+        <p className="text-xl text-slate-400 max-w-3xl mx-auto mb-4 animate-fade-in-up animation-delay-200">
           {t.hero.subtitle[lang]}
+        </p>
+
+        {/* Small subtitle */}
+        <p className="text-sm text-slate-500 max-w-2xl mx-auto mb-10 animate-fade-in-up animation-delay-200">
+          {t.hero.subtitleSmall[lang]}
         </p>
 
         {/* CTA buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up animation-delay-400">
           <Link
             href="/demo"
-            className="px-6 py-3 md:px-8 md:py-3.5 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold text-base md:text-lg shadow-lg shadow-primary/25 transition-transform duration-300 hover:scale-105"
+            className="px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-accent text-white font-semibold text-lg shadow-lg shadow-primary/25 hover:scale-105 transition"
           >
             {t.hero.ctaPrimary[lang]}
           </Link>
-          <Link
-            href="/demo"
-            className="px-6 py-3 md:px-8 md:py-3.5 rounded-full glass text-white font-semibold text-base md:text-lg transition-all duration-300 hover:scale-105 hover:border-white/20"
+          <a
+            href="#solution"
+            className="px-8 py-4 rounded-xl glass text-white font-semibold text-lg hover:scale-105 transition"
           >
             {t.hero.ctaSecondary[lang]}
-          </Link>
+          </a>
         </div>
 
         {/* Stats row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto animate-fade-in-up animation-delay-600">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto mt-16 animate-fade-in-up animation-delay-600">
           <div className="glass rounded-2xl p-6">
-            <p className="text-3xl font-bold gradient-text mb-1">{t.hero.stat1Value[lang]}</p>
+            <p className="text-4xl font-bold gradient-text mb-1">{t.hero.stat1Value[lang]}</p>
             <p className="text-sm text-slate-400">{t.hero.stat1Label[lang]}</p>
           </div>
           <div className="glass rounded-2xl p-6">
-            <p className="text-3xl font-bold gradient-text mb-1">{t.hero.stat2Value[lang]}</p>
+            <p className="text-4xl font-bold gradient-text mb-1">{t.hero.stat2Value[lang]}</p>
             <p className="text-sm text-slate-400">{t.hero.stat2Label[lang]}</p>
           </div>
           <div className="glass rounded-2xl p-6">
-            <p className="text-3xl font-bold gradient-text mb-1">{t.hero.stat3Value[lang]}</p>
+            <p className="text-4xl font-bold gradient-text mb-1">{t.hero.stat3Value[lang]}</p>
             <p className="text-sm text-slate-400">{t.hero.stat3Label[lang]}</p>
           </div>
         </div>

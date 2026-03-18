@@ -2,94 +2,150 @@ export const t = {
   /* ─── Header ─── */
   nav: {
     features: { fr: "Fonctionnalités", en: "Features" },
-    solutions: { fr: "Solutions", en: "Solutions" },
     pricing: { fr: "Tarifs", en: "Pricing" },
     faq: { fr: "FAQ", en: "FAQ" },
-    cta: { fr: "Essai gratuit", en: "Free trial" },
+    cta: { fr: "Demander une démo", en: "Request a demo" },
   },
 
   /* ─── Hero ─── */
   hero: {
-    title1: { fr: "Automatisez vos appels avec des ", en: "Automate your calls with " },
-    titleHighlight: { fr: "agents IA intelligents", en: "intelligent AI agents" },
-    subtitle: {
-      fr: "Callaps crée des agents conversationnels personnalisés qui gèrent vos appels entrants et sortants, 24h/24, 7j/7. Plus de leads, moins de coûts.",
-      en: "Callaps creates custom conversational agents that handle your inbound and outbound calls, 24/7. More leads, lower costs.",
+    title1: { fr: "Ne ratez plus aucun appel. ", en: "Never miss a call again. " },
+    titleHighlight: {
+      fr: "Générez plus de clients, automatiquement.",
+      en: "Generate more clients, automatically.",
     },
-    ctaPrimary: { fr: "Démarrer gratuitement", en: "Get started free" },
-    ctaSecondary: { fr: "Voir la démo", en: "Watch demo" },
-    stat1Value: { fr: "98%", en: "98%" },
-    stat1Label: { fr: "Satisfaction client", en: "Client satisfaction" },
+    subtitle: {
+      fr: "Callaps déploie des agents IA qui répondent, appellent et qualifient vos prospects à votre place, 24h/24.",
+      en: "Callaps deploys AI agents that answer, call and qualify your prospects for you, 24/7.",
+    },
+    ctaPrimary: { fr: "Demander une démo", en: "Request a demo" },
+    ctaSecondary: { fr: "Voir comment ça fonctionne", en: "See how it works" },
+    subtitleSmall: {
+      fr: "Pour les entreprises qui veulent traiter plus de demandes, sans recruter ni surcharger leurs équipes.",
+      en: "For companies that want to handle more requests, without hiring or overloading their teams.",
+    },
+    stat1Value: { fr: "100%", en: "100%" },
+    stat1Label: { fr: "Appels traités", en: "Calls handled" },
     stat2Value: { fr: "24/7", en: "24/7" },
-    stat2Label: { fr: "Disponibilité", en: "Availability" },
+    stat2Label: { fr: "Disponible", en: "Available" },
     stat3Value: { fr: "x3", en: "x3" },
-    stat3Label: { fr: "Leads générés", en: "Leads generated" },
+    stat3Label: { fr: "Plus de leads", en: "More leads" },
   },
 
-  /* ─── Features ─── */
-  features: {
-    badge: { fr: "Fonctionnalités clés", en: "Key features" },
-    title1: { fr: "Des agents IA qui ", en: "AI agents that " },
-    titleHighlight: { fr: "transforment votre business", en: "transform your business" },
-    subtitle: {
-      fr: "Nos agents conversationnels s'adaptent à vos besoins et s'intègrent à vos outils existants.",
-      en: "Our conversational agents adapt to your needs and integrate with your existing tools.",
+  /* ─── Problem ─── */
+  problem: {
+    title: {
+      fr: "Chaque appel manqué est une opportunité perdue.",
+      en: "Every missed call is a lost opportunity.",
     },
-    learnMore: { fr: "En savoir plus", en: "Learn more" },
-    cards: [
+    subtitle: {
+      fr: "Aujourd'hui, vos équipes font face à :",
+      en: "Today, your teams face:",
+    },
+    items: [
+      { fr: "Vous ne pouvez pas répondre à tout", en: "You can't answer everything" },
+      { fr: "Vos équipes sont débordées", en: "Your teams are overwhelmed" },
       {
-        title: { fr: "Appels automatisés", en: "Automated calls" },
-        description: {
-          fr: "Gérez des centaines d\u2019appels simultanément. Vos agents IA répondent instantanément, 24h/24, sans temps d\u2019attente.",
-          en: "Handle hundreds of calls simultaneously. Your AI agents respond instantly, 24/7, with zero wait time.",
-        },
-        metric: { fr: "500+", en: "500+" },
-        metricLabel: { fr: "appels/heure", en: "calls/hour" },
+        fr: "Vos prospects attendent… puis vont ailleurs",
+        en: "Your prospects wait… then go elsewhere",
+      },
+      { fr: "Le suivi est irrégulier", en: "Follow-up is inconsistent" },
+    ],
+    result: {
+      fr: "Résultat : du chiffre d'affaires qui vous échappe.",
+      en: "Result: revenue slipping through your fingers.",
+    },
+  },
+
+  /* ─── Solution ─── */
+  solution: {
+    title: {
+      fr: "Callaps automatise vos appels avec des ",
+      en: "Callaps automates your calls with ",
+    },
+    titleHighlight: {
+      fr: "agents IA intelligents.",
+      en: "intelligent AI agents.",
+    },
+    subtitle: {
+      fr: "Comme un commercial disponible 24h/24.",
+      en: "Like a sales rep available 24/7.",
+    },
+    items: [
+      {
+        fr: "Répond aux appels entrants instantanément",
+        en: "Answers incoming calls instantly",
       },
       {
-        title: { fr: "IA Conversationnelle", en: "Conversational AI" },
-        description: {
-          fr: "Compréhension naturelle du langage. Vos agents comprennent les nuances et répondent de manière fluide et humaine.",
-          en: "Natural language understanding. Your agents grasp nuances and respond in a fluid, human-like manner.",
-        },
-        metric: { fr: "98%", en: "98%" },
-        metricLabel: { fr: "compréhension", en: "comprehension" },
+        fr: "Lance des appels sortants automatiquement",
+        en: "Makes outbound calls automatically",
       },
       {
-        title: { fr: "Analytics avancés", en: "Advanced analytics" },
-        description: {
-          fr: "Tableaux de bord en temps réel. Analysez les performances, le sentiment client et les tendances d\u2019appels.",
-          en: "Real-time dashboards. Analyze performance, customer sentiment, and call trends.",
-        },
-        metric: { fr: "360°", en: "360°" },
-        metricLabel: { fr: "vue complète", en: "full view" },
+        fr: "Qualifie vos prospects en temps réel",
+        en: "Qualifies your prospects in real time",
       },
       {
-        title: { fr: "Intégration CRM", en: "CRM integration" },
-        description: {
-          fr: "Connexion native avec vos outils : HubSpot, Salesforce, Pipedrive et plus encore.",
-          en: "Native connection with your tools: HubSpot, Salesforce, Pipedrive and more.",
-        },
-        metric: { fr: "50+", en: "50+" },
-        metricLabel: { fr: "intégrations", en: "integrations" },
+        fr: "Prend des rendez-vous ou transmet les leads",
+        en: "Books appointments or passes leads along",
       },
+    ],
+  },
+
+  /* ─── Integration ─── */
+  integration: {
+    title: {
+      fr: "S'intègre parfaitement à vos ",
+      en: "Integrates seamlessly with your ",
+    },
+    titleHighlight: {
+      fr: "outils existants.",
+      en: "existing tools.",
+    },
+    subtitle: {
+      fr: "Callaps se connecte à votre écosystème : CRM, outils internes, logiciels métiers.",
+      en: "Callaps connects to your ecosystem: CRM, internal tools, business software.",
+    },
+    footer: {
+      fr: "Aucun changement complexe. Tout s'adapte à votre fonctionnement.",
+      en: "No complex changes. Everything adapts to how you work.",
+    },
+  },
+
+  /* ─── Benefits ─── */
+  benefits: {
+    title: { fr: "Avec Callaps, vous :", en: "With Callaps, you:" },
+    items: [
+      { fr: "Ne manquez plus aucun appel", en: "Never miss a call again" },
+      { fr: "Augmentez votre volume de leads", en: "Increase your lead volume" },
+      { fr: "Réduisez vos coûts opérationnels", en: "Reduce your operational costs" },
+      { fr: "Libérez du temps pour vos équipes", en: "Free up time for your teams" },
+      { fr: "Accélérez votre croissance", en: "Accelerate your growth" },
+    ],
+  },
+
+  /* ─── Analysis ─── */
+  analysis: {
+    title: {
+      fr: "Améliorez vos performances ",
+      en: "Improve your performance ",
+    },
+    titleHighlight: {
+      fr: "en continu.",
+      en: "continuously.",
+    },
+    subtitle: {
+      fr: "Vous ne faites pas qu'automatiser, vous optimisez.",
+      en: "You don't just automate, you optimize.",
+    },
+    items: [
       {
-        title: { fr: "Sécurité & RGPD", en: "Security & GDPR" },
-        description: {
-          fr: "Données hébergées en France. Conformité RGPD totale. Chiffrement de bout en bout.",
-          en: "Data hosted in France. Full GDPR compliance. End-to-end encryption.",
-        },
-        metric: { fr: "100%", en: "100%" },
-        metricLabel: { fr: "conforme RGPD", en: "GDPR compliant" },
+        fr: "Chaque appel est analysé automatiquement",
+        en: "Every call is automatically analyzed",
       },
+      { fr: "Les performances sont mesurées", en: "Performance is measured" },
       {
-        title: { fr: "100% Personnalisable", en: "100% Customizable" },
-        description: {
-          fr: "Scripts d\u2019appels, voix, tonalité, scénarios — tout est configurable selon votre marque.",
-          en: "Call scripts, voice, tone, scenarios — everything is configurable to match your brand.",
-        },
-        metric: { fr: "\u221E", en: "\u221E" },
-        metricLabel: { fr: "possibilités", en: "possibilities" },
+        fr: "Des axes d'amélioration concrets vous sont proposés",
+        en: "Concrete improvement suggestions are provided",
       },
     ],
   },
@@ -98,93 +154,68 @@ export const t = {
   howItWorks: {
     title: { fr: "Comment ça marche ?", en: "How does it work?" },
     subtitle: {
-      fr: "En 4 étapes simples, votre agent IA est opérationnel.",
-      en: "In 4 simple steps, your AI agent is up and running.",
+      fr: "Mise en place rapide, sans complexité.",
+      en: "Quick setup, no complexity.",
     },
     steps: [
       {
-        title: { fr: "Échange découverte", en: "Discovery call" },
-        badge: { fr: "Gratuit", en: "Free" },
+        title: { fr: "Configuration", en: "Setup" },
+        badge: { fr: "Étape 1", en: "Step 1" },
         description: {
-          fr: "Un appel de 30 minutes pour comprendre vos besoins, vos objectifs et vos processus actuels.",
-          en: "A 30-minute call to understand your needs, goals, and current processes.",
+          fr: "On configure votre agent IA selon votre activité.",
+          en: "We configure your AI agent based on your business.",
         },
       },
       {
-        title: { fr: "Configuration sur mesure", en: "Custom setup" },
-        badge: { fr: "Personnalisé", en: "Personalized" },
+        title: { fr: "Connexion", en: "Connection" },
+        badge: { fr: "Étape 2", en: "Step 2" },
         description: {
-          fr: "Nous configurons votre agent IA : scripts, voix, scénarios, intégrations CRM et règles de transfert.",
-          en: "We configure your AI agent: scripts, voice, scenarios, CRM integrations, and transfer rules.",
+          fr: "On le connecte à vos outils existants.",
+          en: "We connect it to your existing tools.",
         },
       },
       {
-        title: { fr: "Tests & optimisation", en: "Testing & optimization" },
-        badge: { fr: "Itératif", en: "Iterative" },
+        title: { fr: "Automatisation", en: "Automation" },
+        badge: { fr: "Étape 3", en: "Step 3" },
         description: {
-          fr: "Phase de test en conditions réelles. Ajustements continus pour des performances optimales.",
-          en: "Real-world testing phase. Continuous adjustments for optimal performance.",
+          fr: "Il gère vos appels en continu.",
+          en: "It handles your calls continuously.",
         },
       },
       {
-        title: { fr: "Déploiement & suivi", en: "Deployment & monitoring" },
-        badge: { fr: "Durable", en: "Lasting" },
+        title: { fr: "Optimisation", en: "Optimization" },
+        badge: { fr: "Étape 4", en: "Step 4" },
         description: {
-          fr: "Mise en production et suivi des performances. Support continu et améliorations régulières.",
-          en: "Production launch and performance monitoring. Ongoing support and regular improvements.",
+          fr: "Vous suivez et améliorez vos performances.",
+          en: "You track and improve your performance.",
         },
       },
     ],
   },
 
-  /* ─── Solutions ─── */
-  solutions: {
-    title1: { fr: "Des solutions adaptées à ", en: "Solutions tailored to " },
-    titleHighlight: { fr: "chaque besoin", en: "every need" },
-    subtitle: {
-      fr: "Que vous soyez une startup, PME ou grand groupe, Callaps s'adapte à votre échelle.",
-      en: "Whether you're a startup, SMB, or enterprise, Callaps scales to fit.",
+  /* ─── Results ─── */
+  results: {
+    title: {
+      fr: "Les entreprises qui utilisent Callaps :",
+      en: "Companies using Callaps:",
     },
-    learnMore: { fr: "En savoir plus", en: "Learn more" },
-    cards: [
+    items: [
+      { value: "100%", label: { fr: "des appels traités", en: "of calls handled" } },
+      { value: "+45%", label: { fr: "de leads en plus", en: "more leads" } },
+      { value: "-60%", label: { fr: "de charge opérationnelle", en: "operational load" } },
+    ],
+  },
+
+  /* ─── Target Audience ─── */
+  targetAudience: {
+    title: { fr: "Pour qui ?", en: "Who is it for?" },
+    items: [
+      { fr: "PME en croissance", en: "Growing SMBs" },
+      { fr: "Équipes commerciales", en: "Sales teams" },
+      { fr: "Services client", en: "Customer service" },
       {
-        title: { fr: "Service Client", en: "Customer Service" },
-        badge: { fr: "Populaire", en: "Popular" },
-        description: {
-          fr: "Automatisez votre service client avec un agent IA disponible 24/7. Réduisez les temps d'attente et augmentez la satisfaction.",
-          en: "Automate your customer service with an AI agent available 24/7. Reduce wait times and boost satisfaction.",
-        },
-        bullets: [
-          { fr: "Réponses instantanées", en: "Instant responses" },
-          { fr: "Transfert intelligent vers un humain", en: "Smart transfer to a human" },
-          { fr: "Suivi des tickets", en: "Ticket tracking" },
-        ],
-      },
-      {
-        title: { fr: "Prospection Commerciale", en: "Sales Prospecting" },
-        badge: null,
-        description: {
-          fr: "Multipliez vos prises de contact. Votre agent IA qualifie les leads et planifie les rendez-vous automatiquement.",
-          en: "Multiply your outreach. Your AI agent qualifies leads and books meetings automatically.",
-        },
-        bullets: [
-          { fr: "Qualification automatique", en: "Automatic qualification" },
-          { fr: "Prise de RDV intégrée", en: "Built-in booking" },
-          { fr: "Reporting détaillé", en: "Detailed reporting" },
-        ],
-      },
-      {
-        title: { fr: "Enquêtes & Sondages", en: "Surveys & Polls" },
-        badge: null,
-        description: {
-          fr: "Réalisez des enquêtes téléphoniques à grande échelle. Collectez des données structurées en un temps record.",
-          en: "Run large-scale phone surveys. Collect structured data in record time.",
-        },
-        bullets: [
-          { fr: "Appels sortants en masse", en: "Mass outbound calls" },
-          { fr: "Données structurées", en: "Structured data" },
-          { fr: "Analyse en temps réel", en: "Real-time analysis" },
-        ],
+        fr: "Entreprises avec volume d'appels élevé",
+        en: "High call volume businesses",
       },
     ],
   },
@@ -352,16 +383,16 @@ export const t = {
 
   /* ─── CTA ─── */
   cta: {
-    title: { fr: "Prêt à révolutionner vos appels ?", en: "Ready to revolutionize your calls?" },
-    subtitle: {
-      fr: "Rejoignez les entreprises qui font confiance à Callaps pour automatiser leur communication.",
-      en: "Join the businesses that trust Callaps to automate their communication.",
+    title: { fr: "Arrêtez de perdre des appels. ", en: "Stop losing calls. " },
+    titleHighlight: { fr: "Transformez-les en clients.", en: "Turn them into clients." },
+    ctaPrimary: { fr: "Demander une démo", en: "Request a demo" },
+    ctaSecondary: {
+      fr: "Découvrir le potentiel pour votre entreprise",
+      en: "Discover the potential for your business",
     },
-    ctaPrimary: { fr: "Démarrer gratuitement", en: "Get started free" },
-    ctaSecondary: { fr: "Prendre rendez-vous", en: "Book a meeting" },
     trust: {
-      fr: "Réponse sous 24h \u00b7 Sans engagement \u00b7 Démo gratuite",
-      en: "Response within 24h \u00b7 No commitment \u00b7 Free demo",
+      fr: "Réponse sous 24h · Sans engagement · Démo gratuite",
+      en: "Response within 24h · No commitment · Free demo",
     },
   },
 

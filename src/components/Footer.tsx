@@ -8,8 +8,7 @@ export default function Footer() {
   const { lang } = useLang();
 
   const productLinks = [
-    { label: t.nav.features[lang], href: "#features" },
-    { label: t.nav.solutions[lang], href: "#solutions" },
+    { label: t.nav.features[lang], href: "#solution" },
     { label: t.nav.pricing[lang], href: "#pricing" },
     { label: t.nav.faq[lang], href: "#faq" },
   ];
