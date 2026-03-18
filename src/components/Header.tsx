@@ -34,7 +34,7 @@ export default function Header() {
           : "bg-white/80 backdrop-blur-sm"
       }`}
     >
-      <nav className={`mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-6 transition-all duration-300 ${scrolled ? "py-1" : "py-1"}`}>
+      <nav className={`mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-6 transition-all duration-300 ${scrolled ? "py-1" : ""}`} style={scrolled ? undefined : { padding: "27px" }}>
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
