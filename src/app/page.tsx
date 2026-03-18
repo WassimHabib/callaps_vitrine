@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import ResultatHero from "@/components/ResultatHero";
 import Problem from "@/components/Problem";
 import Solution from "@/components/Solution";
 import Integration from "@/components/Integration";
@@ -20,6 +21,7 @@ export default function Home() {
     <main className="min-h-screen bg-surface-dark">
       <Header />
       <Hero />
+      <ResultatHero />
       <Problem />
       <Solution />
       <Integration />
