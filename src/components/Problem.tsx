@@ -11,18 +11,7 @@ export default function Problem() {
     <section id="problem" className="bg-surface/50 py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left — Image */}
-          <div className="flex justify-center lg:justify-start">
-            <Image
-              src="/appels-manques.png"
-              alt={lang === "fr" ? "Appels manqués" : "Missed calls"}
-              width={1000}
-              height={667}
-              className="w-full max-w-[480px] h-auto"
-            />
-          </div>
-
-          {/* Right — Text */}
+          {/* Left — Text */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
               {t.problem.title[lang]}
@@ -59,6 +48,17 @@ export default function Problem() {
                 </span>
               </p>
             </div>
+          </div>
+
+          {/* Right — Image */}
+          <div className="flex justify-center lg:justify-end">
+            <Image
+              src="/appels-manques.png"
+              alt={lang === "fr" ? "Appels manqués" : "Missed calls"}
+              width={1000}
+              height={667}
+              className="w-full max-w-[480px] h-auto"
+            />
           </div>
         </div>
       </div>
