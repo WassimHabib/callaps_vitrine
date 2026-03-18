@@ -57,7 +57,7 @@ export default function FloatingContact() {
           <div className="group relative flex items-center justify-center">
             {/* Tooltip */}
             <span
-              className="absolute right-full mr-3 whitespace-nowrap rounded-lg bg-gray-900 px-3 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg"
+              className="absolute right-full mr-3 whitespace-nowrap rounded-lg bg-slate-900 border border-white/10 px-3 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
             >
               {btn.label}
             </span>
@@ -107,13 +107,13 @@ export default function FloatingContact() {
         type="button"
         aria-label="Contact"
         onClick={() => setOpen((prev) => !prev)}
-        className={`relative flex h-14 w-14 items-center justify-center rounded-full bg-[#2563eb] text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:shadow-blue-500/40 hover:scale-105 cursor-pointer ${
+        className={`relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:shadow-primary/40 hover:scale-105 cursor-pointer ${
           open ? "rotate-45" : "animate-pulse-soft"
         }`}
       >
         {/* Pulse ring (only when closed) */}
         {!open && (
-          <span className="absolute inset-0 rounded-full bg-[#2563eb] opacity-40 animate-ping-slow" />
+          <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent opacity-40 animate-ping-slow" />
         )}
 
         {/* Chat bubble icon */}

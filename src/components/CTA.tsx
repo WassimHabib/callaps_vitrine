@@ -8,25 +8,41 @@ export default function CTA() {
   const { lang } = useLang();
 
   return (
-    <section className="bg-blue-600 py-20 px-6">
+    <section className="py-24 px-4">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-          {t.cta.title[lang]}
-        </h2>
-        <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-          {t.cta.subtitle[lang]}
-        </p>
+        <div className="bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl p-8 md:p-16 relative overflow-hidden">
+          {/* Decorative glow circles */}
+          <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary rounded-full blur-3xl opacity-20" />
+          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-accent rounded-full blur-3xl opacity-20" />
 
-        <Link
-          href="/demo"
-          className="inline-block bg-white text-blue-600 font-semibold rounded-lg px-8 py-4 hover:bg-blue-50 transition"
-        >
-          {t.cta.ctaPrimary[lang]}
-        </Link>
+          <div className="relative z-10">
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-6">
+              {t.cta.title[lang]}
+            </h2>
+            <p className="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">
+              {t.cta.subtitle[lang]}
+            </p>
 
-        <p className="text-blue-200 text-sm mt-8">
-          {t.cta.trust[lang]}
-        </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <Link
+                href="/demo"
+                className="bg-gradient-to-r from-primary to-accent text-white rounded-full px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-medium hover:opacity-90 transition-opacity"
+              >
+                {t.cta.ctaPrimary[lang]}
+              </Link>
+              <Link
+                href="/demo"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 text-white rounded-full px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-medium hover:bg-white/10 transition-colors"
+              >
+                {t.cta.ctaSecondary[lang]}
+              </Link>
+            </div>
+
+            <p className="text-slate-400 text-sm">
+              {t.cta.trust[lang]}
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
