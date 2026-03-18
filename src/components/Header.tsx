@@ -30,8 +30,8 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "glass shadow-lg shadow-primary/5"
-          : "bg-transparent"
+          ? "bg-[#0B0B0F]/90 backdrop-blur-xl shadow-lg shadow-black/10"
+          : "bg-white/80 backdrop-blur-sm"
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
@@ -53,7 +53,9 @@ export default function Header() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-white"
+                className={`text-sm font-medium transition-colors duration-200 ${
+                  scrolled ? "text-slate-300 hover:text-white" : "text-gray-600 hover:text-gray-900"
+                }`}
               >
                 {link.label}
               </a>
@@ -64,14 +66,14 @@ export default function Header() {
         {/* Desktop language selector + CTA */}
         <div className="hidden md:flex items-center gap-4">
           {/* Language selector */}
-          <div className="flex items-center gap-1 rounded-lg bg-white/5 p-1">
+          <div className={`flex items-center gap-1 rounded-lg p-1 ${scrolled ? "bg-white/5" : "bg-gray-100"}`}>
             <button
               type="button"
               onClick={() => setLang("fr")}
               className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
                 lang === "fr"
-                  ? "bg-white/10 text-white"
-                  : "text-slate-400"
+                  ? scrolled ? "bg-white/10 text-white" : "bg-white text-gray-900 shadow-sm"
+                  : scrolled ? "text-slate-400" : "text-gray-400"
               }`}
             >
               FR
@@ -81,8 +83,8 @@ export default function Header() {
               onClick={() => setLang("en")}
               className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
                 lang === "en"
-                  ? "bg-white/10 text-white"
-                  : "text-slate-400"
+                  ? scrolled ? "bg-white/10 text-white" : "bg-white text-gray-900 shadow-sm"
+                  : scrolled ? "text-slate-400" : "text-gray-400"
               }`}
             >
               EN
@@ -103,7 +105,9 @@ export default function Header() {
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((prev) => !prev)}
-          className="relative flex md:hidden h-10 w-10 items-center justify-center rounded-lg text-slate-300 transition-colors hover:text-white"
+          className={`relative flex md:hidden h-10 w-10 items-center justify-center rounded-lg transition-colors ${
+            scrolled ? "text-slate-300 hover:text-white" : "text-gray-600 hover:text-gray-900"
+          }`}
         >
           <span className="sr-only">Menu</span>
           <div className="flex flex-col items-center justify-center gap-[5px]">

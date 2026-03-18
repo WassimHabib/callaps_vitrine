@@ -25,9 +25,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0B0B0F]">
-      {/* Subtle top gradient — just a hint */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-accent/5 rounded-full blur-[150px] pointer-events-none" />
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
+      {/* Glow gradient behind visual elements */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%] w-[700px] h-[700px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(77,175,255,0.35) 0%, rgba(123,97,255,0.3) 35%, rgba(217,70,239,0.15) 60%, transparent 80%)" }} />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-20 w-full">
@@ -38,12 +38,12 @@ export default function Hero() {
           </p>
 
           <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold leading-[1.1] tracking-tight mb-6 animate-fade-in-up">
-            <span className="text-white">{t.hero.title1[lang]}</span>
+            <span className="text-gray-900">{t.hero.title1[lang]}</span>
             <br />
             <span className="gradient-text">{t.hero.titleHighlight[lang]}</span>
           </h1>
 
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8 animate-fade-in-up animation-delay-200">
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-8 animate-fade-in-up animation-delay-200">
             {t.hero.subtitle[lang]}
           </p>
 
@@ -57,13 +57,13 @@ export default function Hero() {
             </Link>
             <a
               href="#solution"
-              className="px-8 py-3.5 rounded-xl border border-white/10 text-white font-semibold text-base hover:bg-white/5 transition-all duration-200"
+              className="px-8 py-3.5 rounded-xl border border-gray-200 text-gray-700 font-semibold text-base hover:bg-gray-50 transition-all duration-200"
             >
               {t.hero.ctaSecondary[lang]}
             </a>
           </div>
 
-          <p className="text-xs text-slate-600 animate-fade-in-up animation-delay-400">
+          <p className="text-xs text-gray-400 animate-fade-in-up animation-delay-400">
             {t.hero.subtitleSmall[lang]}
           </p>
         </div>
@@ -227,15 +227,15 @@ export default function Hero() {
         <div className="flex flex-wrap justify-center gap-10 mt-12 animate-fade-in-up animation-delay-600">
           <div className="text-center">
             <p className="text-2xl font-bold gradient-text">{t.hero.stat1Value[lang]}</p>
-            <p className="text-xs text-slate-500">{t.hero.stat1Label[lang]}</p>
+            <p className="text-xs text-gray-400">{t.hero.stat1Label[lang]}</p>
           </div>
           <div className="text-center">
             <p className="text-2xl font-bold gradient-text">{t.hero.stat2Value[lang]}</p>
-            <p className="text-xs text-slate-500">{t.hero.stat2Label[lang]}</p>
+            <p className="text-xs text-gray-400">{t.hero.stat2Label[lang]}</p>
           </div>
           <div className="text-center">
             <p className="text-2xl font-bold gradient-text">{t.hero.stat3Value[lang]}</p>
-            <p className="text-xs text-slate-500">{t.hero.stat3Label[lang]}</p>
+            <p className="text-xs text-gray-400">{t.hero.stat3Label[lang]}</p>
           </div>
         </div>
       </div>
