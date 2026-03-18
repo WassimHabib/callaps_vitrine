@@ -25,7 +25,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
+    <section className="relative min-h-screen flex items-center bg-white">
       {/* Glow gradient behind visual elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%] w-[700px] h-[700px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(77,175,255,0.35) 0%, rgba(123,97,255,0.3) 35%, rgba(217,70,239,0.15) 60%, transparent 80%)" }} />
 
@@ -68,22 +68,21 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* ── Bottom: Visual showcase ── */}
-        <div className="relative max-w-5xl mx-auto h-[420px] md:h-[480px] animate-fade-in-up animation-delay-600">
+        {/* ── Bottom: Visual showcase — phone dépasse en bas ── */}
+        <div className="relative max-w-5xl mx-auto h-[450px] md:h-[520px] animate-fade-in-up animation-delay-600">
 
-          {/* ── Centre: Phone (grand) ── */}
+          {/* ── Centre: Phone (grand, dépasse en bas) ── */}
           <div
             ref={phoneRef}
-            className="absolute left-1/2 -translate-x-1/2 bottom-0 z-20 w-[220px] md:w-[260px]"
+            className="absolute left-1/2 -translate-x-1/2 -bottom-32 md:-bottom-40 z-20 w-[260px] md:w-[300px]"
             style={{ transition: "transform 0.1s linear" }}
           >
-            <div className="rounded-[2.5rem] bg-[#0B0B0F] border border-white/10 p-2.5 shadow-2xl shadow-black/60">
+            <div className="rounded-[3rem] bg-[#1a1a24] border-[3px] border-[#2a2a35] p-3 shadow-2xl shadow-black/60">
               {/* Notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#0B0B0F] rounded-b-2xl z-20 flex items-center justify-center">
-                <div className="w-10 h-1 bg-white/10 rounded-full" />
-              </div>
+              {/* Dynamic Island */}
+              <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-7 bg-black rounded-full z-20" />
               {/* Screen */}
-              <div className="rounded-[2rem] bg-gradient-to-b from-[#111118] to-[#0B0B0F] overflow-hidden">
+              <div className="rounded-[2.5rem] bg-gradient-to-b from-[#111118] to-[#0B0B0F] overflow-hidden">
                 {/* Call header */}
                 <div className="bg-accent/10 px-4 pt-7 pb-3 flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">

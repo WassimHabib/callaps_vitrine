@@ -42,7 +42,7 @@ export default function Header() {
             alt="Callaps"
             width={360}
             height={100}
-            className={`w-auto transition-all duration-300 ${scrolled ? "h-10 md:h-12" : "h-20 md:h-28"}`}
+            className={`w-auto transition-all duration-300 ${scrolled ? "h-10 md:h-14" : "h-16 md:h-20"}`}
             priority
           />
         </Link>

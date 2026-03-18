@@ -7,7 +7,7 @@ export default function ResultatHero() {
   const { lang } = useLang();
 
   return (
-    <section className="relative bg-[#0B0B0F] py-24 px-6 overflow-hidden">
+    <section className="relative z-30 bg-[#0B0B0F] pt-32 md:pt-40 pb-24 px-6 overflow-hidden">
       {/* Subtle glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-accent/8 rounded-full blur-[120px] pointer-events-none" />
 
