@@ -70,41 +70,38 @@ export default function Hero() {
         </div>
 
         {/* ── Bottom: Visual showcase — phone dépasse en bas ── */}
-        <div className="relative max-w-5xl mx-auto h-[450px] md:h-[520px] animate-fade-in-up animation-delay-600">
+        <div className="relative max-w-5xl mx-auto h-[500px] md:h-[600px] animate-fade-in-up animation-delay-600">
 
-          {/* ── Centre: iPhone mockup image + contenu superposé ── */}
+          {/* ── Centre: iPhone CSS mockup (grand, fond blanc) ── */}
           <div
             ref={phoneRef}
-            className="absolute left-1/2 -translate-x-1/2 -bottom-32 md:-bottom-44 z-20 w-[260px] md:w-[320px]"
+            className="absolute left-1/2 -translate-x-1/2 top-0 md:-bottom-36 md:top-auto z-20 w-[300px] md:w-[400px]"
             style={{ transition: "transform 0.1s linear" }}
           >
-            {/* Mockup image container */}
             <div className="relative">
-              {/* iPhone image */}
-              <Image
-                src="/iphone-mockup.png"
-                alt="iPhone"
-                width={800}
-                height={1200}
-                className="w-full h-auto relative z-10"
-                priority
-              />
-              {/* Screen content overlay — positionné sur l'écran du mockup */}
-              <div className="absolute top-[3.5%] left-[5.5%] right-[5.5%] bottom-[3.5%] z-20 rounded-[2rem] overflow-hidden bg-[#0B0B0F]">
+              {/* iPhone frame */}
+              <div className="rounded-[3rem] bg-gradient-to-b from-[#e0e0e8] to-[#c8c8d0] p-[3px] shadow-2xl shadow-black/20">
+                <div className="rounded-[2.85rem] bg-white overflow-hidden">
+                  {/* Dynamic Island */}
+                  <div className="flex justify-center pt-3 pb-1">
+                    <div className="w-[90px] h-[28px] bg-black rounded-full" />
+                  </div>
+                  {/* Screen content */}
+                  <div className="bg-white">
                 {/* Call header */}
-                <div className="bg-accent/10 px-4 pt-8 pb-3 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent-light">
+                <div className="bg-gradient-to-r from-primary/10 to-accent/10 px-4 pt-8 pb-3 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary">
                       <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <p className="text-[11px] text-white font-medium">{lang === "fr" ? "Appel en cours" : "Call in progress"}</p>
-                    <p className="text-[9px] text-accent-light">02:34 — {lang === "fr" ? "Agent IA actif" : "AI Agent active"}</p>
+                    <p className="text-[11px] text-gray-900 font-medium">{lang === "fr" ? "Appel en cours" : "Call in progress"}</p>
+                    <p className="text-[9px] text-primary">02:34 — {lang === "fr" ? "Agent IA actif" : "AI Agent active"}</p>
                   </div>
                   <div className="flex gap-0.5">
                     {[1, 2, 3, 4, 5].map((i) => (
-                      <div key={i} className="w-[3px] rounded-full bg-accent-light" style={{ height: `${6 + Math.sin(i * 1.2) * 6}px`, animation: `soundbar 0.${3 + i}s ease-in-out infinite alternate` }} />
+                      <div key={i} className="w-[3px] rounded-full bg-primary" style={{ height: `${6 + Math.sin(i * 1.2) * 6}px`, animation: `soundbar 0.${3 + i}s ease-in-out infinite alternate` }} />
                     ))}
                   </div>
                 </div>
@@ -113,36 +110,38 @@ export default function Hero() {
                 <div className="px-3 py-3 space-y-2.5">
                   <div className="flex items-start gap-2">
                     <span className="text-[9px] text-accent font-semibold mt-0.5 shrink-0">IA</span>
-                    <p className="text-[10px] text-slate-300 leading-relaxed">{lang === "fr" ? "Bonjour, Callaps, comment puis-je vous aider ?" : "Hello, Callaps, how can I help?"}</p>
+                    <p className="text-[10px] text-gray-700 leading-relaxed">{lang === "fr" ? "Bonjour, Callaps, comment puis-je vous aider ?" : "Hello, Callaps, how can I help?"}</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-[9px] text-primary font-semibold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
-                    <p className="text-[10px] text-slate-300 leading-relaxed">{lang === "fr" ? "Je cherche une solution pour automatiser nos appels." : "I'm looking to automate our calls."}</p>
+                    <p className="text-[10px] text-gray-700 leading-relaxed">{lang === "fr" ? "Je cherche une solution pour automatiser nos appels." : "I'm looking to automate our calls."}</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-[9px] text-accent font-semibold mt-0.5 shrink-0">IA</span>
-                    <p className="text-[10px] text-slate-300 leading-relaxed">{lang === "fr" ? "Parfait ! Combien d'appels recevez-vous par jour ?" : "Great! How many calls do you get per day?"}</p>
+                    <p className="text-[10px] text-gray-700 leading-relaxed">{lang === "fr" ? "Parfait ! Combien d'appels recevez-vous par jour ?" : "Great! How many calls do you get per day?"}</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-[9px] text-primary font-semibold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
-                    <p className="text-[10px] text-slate-300 leading-relaxed">{lang === "fr" ? "Environ 150 par jour." : "About 150 per day."}</p>
+                    <p className="text-[10px] text-gray-700 leading-relaxed">{lang === "fr" ? "Environ 150 par jour." : "About 150 per day."}</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-[9px] text-accent font-semibold mt-0.5 shrink-0">IA</span>
-                    <p className="text-[10px] text-slate-300 leading-relaxed">{lang === "fr" ? "Je vous programme un rendez-vous avec notre équipe." : "I'll schedule a meeting with our team."}</p>
+                    <p className="text-[10px] text-gray-700 leading-relaxed">{lang === "fr" ? "Je vous programme un rendez-vous avec notre équipe." : "I'll schedule a meeting with our team."}</p>
                   </div>
                 </div>
 
                 {/* Bottom status */}
-                <div className="px-3 pb-3 mt-auto">
-                  <div className="bg-accent/10 rounded-lg px-3 py-2 flex items-center gap-2">
+                <div className="px-3 pb-4 mt-auto">
+                  <div className="bg-gradient-to-r from-accent/10 to-primary/10 rounded-lg px-3 py-2 flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                     <p className="text-[9px] text-accent font-medium">{lang === "fr" ? "Lead qualifié — transfert CRM..." : "Lead qualified — CRM transfer..."}</p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+                  </div>{/* /Screen */}
+                </div>{/* /inner white bg */}
+              </div>{/* /frame gradient */}
+            </div>{/* /relative */}
+          </div>{/* /phone wrapper */}
 
           {/* ── Carte gauche: Analytics ── */}
           <div
