@@ -34,15 +34,15 @@ export default function Header() {
           : "bg-white/80 backdrop-blur-sm"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+      <nav className={`mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-6 transition-all duration-300 ${scrolled ? "py-1" : "py-1"}`}>
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center">
           <Image
             src="/logo.png"
             alt="Callaps"
             width={360}
             height={100}
-            className={`w-auto transition-all duration-300 ${scrolled ? "h-12 md:h-16" : "h-20 md:h-28"}`}
+            className={`w-auto transition-all duration-300 ${scrolled ? "h-10 md:h-12" : "h-14 md:h-16"}`}
             priority
           />
         </Link>
