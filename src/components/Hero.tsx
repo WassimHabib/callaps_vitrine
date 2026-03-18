@@ -2,23 +2,18 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 
 export default function Hero() {
   const { lang } = useLang();
   const phoneRef = useRef<HTMLDivElement>(null);
-  const card1Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleScroll() {
       const y = window.scrollY;
       if (phoneRef.current) {
-        phoneRef.current.style.transform = `translate3d(0, ${y * -0.12}px, 0)`;
-      }
-      if (card1Ref.current) {
-        card1Ref.current.style.transform = `translate3d(0, ${y * 0.08}px, 0)`;
+        phoneRef.current.style.transform = `translate3d(0, ${y * -0.15}px, 0)`;
       }
     }
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -27,8 +22,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center bg-white">
-      {/* Glow gradient behind visual elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%] w-[700px] h-[700px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(77,175,255,0.35) 0%, rgba(123,97,255,0.3) 35%, rgba(217,70,239,0.15) 60%, transparent 80%)" }} />
+      {/* Glow removed — now using glow-bg.png image behind elements */}
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-20 w-full">
@@ -69,185 +63,142 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* ── Bottom: Visual showcase — phone dépasse en bas ── */}
-        <div className="relative max-w-5xl mx-auto h-[500px] md:h-[600px] animate-fade-in-up animation-delay-600">
+        {/* ── Phone showcase — centré, grand, dépasse en bas comme droper.ai ── */}
+        <div className="relative flex justify-center mt-12 -mb-48 md:-mb-64 animate-fade-in-up animation-delay-600">
 
-          {/* ── Centre: iPhone CSS mockup (grand, fond blanc) ── */}
-          <div
-            ref={phoneRef}
-            className="absolute left-1/2 -translate-x-1/2 top-0 md:-bottom-36 md:top-auto z-20 w-[300px] md:w-[400px]"
-            style={{ transition: "transform 0.1s linear" }}
-          >
-            <div className="relative">
-              {/* iPhone frame */}
-              <div className="rounded-[3rem] bg-gradient-to-b from-[#e0e0e8] to-[#c8c8d0] p-[3px] shadow-2xl shadow-black/20">
-                <div className="rounded-[2.85rem] bg-white overflow-hidden">
-                  {/* Dynamic Island */}
-                  <div className="flex justify-center pt-3 pb-1">
-                    <div className="w-[90px] h-[28px] bg-black rounded-full" />
-                  </div>
-                  {/* Screen content */}
-                  <div className="bg-white">
-                {/* Call header */}
-                <div className="bg-gradient-to-r from-primary/10 to-accent/10 px-4 pt-8 pb-3 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary">
-                      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-[11px] text-gray-900 font-medium">{lang === "fr" ? "Appel en cours" : "Call in progress"}</p>
-                    <p className="text-[9px] text-primary">02:34 — {lang === "fr" ? "Agent IA actif" : "AI Agent active"}</p>
-                  </div>
-                  <div className="flex gap-0.5">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <div key={i} className="w-[3px] rounded-full bg-primary" style={{ height: `${6 + Math.sin(i * 1.2) * 6}px`, animation: `soundbar 0.${3 + i}s ease-in-out infinite alternate` }} />
-                    ))}
-                  </div>
-                </div>
+          {/* Glow behind elements */}
+          <img src="/glow-bg.png" alt="" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] md:w-[1200px] pointer-events-none z-0 opacity-80" />
 
-                {/* Transcription */}
-                <div className="px-3 py-3 space-y-2.5">
-                  <div className="flex items-start gap-2">
-                    <span className="text-[9px] text-accent font-semibold mt-0.5 shrink-0">IA</span>
-                    <p className="text-[10px] text-gray-700 leading-relaxed">{lang === "fr" ? "Bonjour, Callaps, comment puis-je vous aider ?" : "Hello, Callaps, how can I help?"}</p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-[9px] text-primary font-semibold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
-                    <p className="text-[10px] text-gray-700 leading-relaxed">{lang === "fr" ? "Je cherche une solution pour automatiser nos appels." : "I'm looking to automate our calls."}</p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-[9px] text-accent font-semibold mt-0.5 shrink-0">IA</span>
-                    <p className="text-[10px] text-gray-700 leading-relaxed">{lang === "fr" ? "Parfait ! Combien d'appels recevez-vous par jour ?" : "Great! How many calls do you get per day?"}</p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-[9px] text-primary font-semibold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
-                    <p className="text-[10px] text-gray-700 leading-relaxed">{lang === "fr" ? "Environ 150 par jour." : "About 150 per day."}</p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-[9px] text-accent font-semibold mt-0.5 shrink-0">IA</span>
-                    <p className="text-[10px] text-gray-700 leading-relaxed">{lang === "fr" ? "Je vous programme un rendez-vous avec notre équipe." : "I'll schedule a meeting with our team."}</p>
-                  </div>
-                </div>
+          {/* Carte haut-gauche */}
+          <div className="absolute left-2 md:left-8 top-4 md:top-10 z-10 bg-white rounded-2xl border border-gray-100 shadow-lg p-4 w-[180px] md:w-[220px]">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-2 h-2 rounded-full bg-accent" />
+              <span className="text-[11px] text-gray-500 font-medium">{lang === "fr" ? "Dernier lead" : "Latest lead"}</span>
+            </div>
+            <div className="flex items-center gap-2.5 mb-2.5">
+              <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-xs text-accent font-bold">SM</div>
+              <div>
+                <p className="text-xs text-gray-900 font-medium">Sophie Martin</p>
+                <p className="text-[10px] text-gray-400">TechVision — CEO</p>
+              </div>
+            </div>
+            <div className="flex gap-1.5">
+              <span className="text-[9px] bg-accent/10 text-accent rounded-full px-2 py-0.5">{lang === "fr" ? "Qualifié" : "Qualified"}</span>
+              <span className="text-[9px] bg-primary/10 text-primary rounded-full px-2 py-0.5">{lang === "fr" ? "Intéressé" : "Interested"}</span>
+            </div>
+          </div>
 
-                {/* Bottom status */}
-                <div className="px-3 pb-4 mt-auto">
-                  <div className="bg-gradient-to-r from-accent/10 to-primary/10 rounded-lg px-3 py-2 flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                    <p className="text-[9px] text-accent font-medium">{lang === "fr" ? "Lead qualifié — transfert CRM..." : "Lead qualified — CRM transfer..."}</p>
-                  </div>
-                </div>
-                  </div>{/* /Screen */}
-                </div>{/* /inner white bg */}
-              </div>{/* /frame gradient */}
-            </div>{/* /relative */}
-          </div>{/* /phone wrapper */}
-
-          {/* ── Carte gauche: Analytics ── */}
-          <div
-            ref={card1Ref}
-            className="absolute left-0 top-8 md:top-12 w-[200px] md:w-[240px] glass rounded-2xl p-4 shadow-xl z-10"
-            style={{ transition: "transform 0.1s linear" }}
-          >
+          {/* Carte haut-droite */}
+          <div className="absolute right-2 md:right-8 top-8 md:top-14 z-10 bg-white rounded-2xl border border-gray-100 shadow-lg p-4 w-[170px] md:w-[210px]">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-2 h-2 rounded-full bg-primary" />
-              <span className="text-[10px] text-slate-400 font-medium">Analytics</span>
+              <span className="text-[11px] text-gray-500 font-medium">Analytics</span>
             </div>
             <div className="grid grid-cols-2 gap-2 mb-3">
-              <div className="bg-white/5 rounded-lg p-2">
-                <p className="text-base font-bold text-white">247</p>
-                <p className="text-[8px] text-slate-500">{lang === "fr" ? "Appels traités" : "Calls handled"}</p>
+              <div className="bg-gray-50 rounded-lg p-2 text-center">
+                <p className="text-lg font-bold text-gray-900">247</p>
+                <p className="text-[9px] text-gray-400">{lang === "fr" ? "Appels" : "Calls"}</p>
               </div>
-              <div className="bg-white/5 rounded-lg p-2">
-                <p className="text-base font-bold text-accent-light">+34</p>
-                <p className="text-[8px] text-slate-500">{lang === "fr" ? "Leads générés" : "Leads generated"}</p>
+              <div className="bg-gray-50 rounded-lg p-2 text-center">
+                <p className="text-lg font-bold text-accent">+34</p>
+                <p className="text-[9px] text-gray-400">Leads</p>
               </div>
             </div>
-            {/* Mini chart */}
-            <div className="flex items-end gap-[3px] h-10">
-              {[35, 55, 40, 70, 50, 85, 60, 90, 55, 95, 70, 80].map((h, i) => (
-                <div key={i} className="flex-1 rounded-t bg-gradient-to-t from-accent/30 to-accent/70" style={{ height: `${h}%` }} />
+            <div className="flex items-end gap-[3px] h-8">
+              {[35, 55, 40, 70, 50, 85, 60, 90, 55, 95].map((h, i) => (
+                <div key={i} className="flex-1 rounded-t bg-gradient-to-t from-primary/30 to-accent/70" style={{ height: `${h}%` }} />
               ))}
             </div>
           </div>
 
-          {/* ── Carte droite: Lead + RDV ── */}
-          <div className="absolute right-0 top-4 md:top-8 w-[200px] md:w-[230px] glass rounded-2xl p-4 shadow-xl z-10">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-2 h-2 rounded-full bg-accent-light" />
-              <span className="text-[10px] text-slate-400 font-medium">{lang === "fr" ? "Dernier lead" : "Latest lead"}</span>
-              <span className="text-[8px] text-accent-light ml-auto">{lang === "fr" ? "Il y a 2 min" : "2 min ago"}</span>
-            </div>
-            {/* Lead card */}
-            <div className="bg-white/5 rounded-xl p-3 mb-2">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-7 h-7 rounded-full bg-accent/20 flex items-center justify-center text-[10px] text-accent font-bold">SM</div>
-                <div>
-                  <p className="text-[10px] text-white font-medium">Sophie Martin</p>
-                  <p className="text-[8px] text-slate-500">TechVision — CEO</p>
+          {/* Phone */}
+          <div
+            ref={phoneRef}
+            className="relative z-20 w-[320px] md:w-[380px]"
+            style={{ transition: "transform 0.1s linear" }}
+          >
+            {/* iPhone frame */}
+            <div className="rounded-[3rem] md:rounded-[3.5rem] bg-gradient-to-b from-[#e0e0e8] to-[#c8c8d0] p-[3px] shadow-2xl shadow-black/20">
+              <div className="rounded-[2.85rem] md:rounded-[3.35rem] bg-white overflow-hidden">
+                {/* Dynamic Island */}
+                <div className="flex justify-center pt-3 pb-1">
+                  <div className="w-[100px] h-[30px] md:w-[120px] md:h-[34px] bg-black rounded-full" />
+                </div>
+                {/* Screen */}
+                <div className="bg-white px-1">
+                  {/* Call header */}
+                  <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl mx-2 px-5 py-4 flex items-center gap-3 mt-2">
+                    <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary">
+                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm text-gray-900 font-semibold">{lang === "fr" ? "Appel en cours" : "Call in progress"}</p>
+                      <p className="text-xs text-primary">02:34 — {lang === "fr" ? "Agent IA actif" : "AI Agent active"}</p>
+                    </div>
+                    <div className="flex gap-[3px]">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <div key={i} className="w-[3px] rounded-full bg-primary" style={{ height: `${8 + Math.sin(i * 1.2) * 8}px`, animation: `soundbar 0.${3 + i}s ease-in-out infinite alternate` }} />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Transcription — rallongée */}
+                  <div className="px-4 py-4 space-y-3">
+                    <div className="flex items-start gap-2.5">
+                      <span className="text-xs text-accent font-bold mt-0.5 shrink-0">IA</span>
+                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "Bonjour, Callaps, comment puis-je vous aider ?" : "Hello, Callaps, how can I help?"}</p>
+                    </div>
+                    <div className="flex items-start gap-2.5">
+                      <span className="text-xs text-primary font-bold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
+                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "Je cherche une solution pour automatiser nos appels." : "I'm looking to automate our calls."}</p>
+                    </div>
+                    <div className="flex items-start gap-2.5">
+                      <span className="text-xs text-accent font-bold mt-0.5 shrink-0">IA</span>
+                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "Bien sûr ! Combien d'appels recevez-vous par jour ?" : "Of course! How many calls do you get per day?"}</p>
+                    </div>
+                    <div className="flex items-start gap-2.5">
+                      <span className="text-xs text-primary font-bold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
+                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "Environ 150 par jour, et on en rate beaucoup." : "About 150 per day, and we miss a lot."}</p>
+                    </div>
+                    <div className="flex items-start gap-2.5">
+                      <span className="text-xs text-accent font-bold mt-0.5 shrink-0">IA</span>
+                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "Notre agent IA peut tous les traiter, 24h/24. Je vous propose un créneau pour une démo ?" : "Our AI agent can handle all of them, 24/7. Can I book a demo slot for you?"}</p>
+                    </div>
+                    <div className="flex items-start gap-2.5">
+                      <span className="text-xs text-primary font-bold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
+                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "Oui, jeudi 14h si possible." : "Yes, Thursday 2pm if possible."}</p>
+                    </div>
+                    <div className="flex items-start gap-2.5">
+                      <span className="text-xs text-accent font-bold mt-0.5 shrink-0">IA</span>
+                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "C'est noté ! RDV confirmé jeudi à 14h. Bonne journée !" : "Noted! Meeting confirmed Thursday at 2pm. Have a great day!"}</p>
+                    </div>
+                  </div>
+
+                  {/* Lead status */}
+                  <div className="px-4 pb-5">
+                    <div className="bg-gradient-to-r from-accent/10 to-primary/10 rounded-xl px-4 py-3 flex items-center gap-2.5">
+                      <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                      <p className="text-xs text-accent font-semibold">{lang === "fr" ? "Lead qualifié — transfert CRM..." : "Lead qualified — CRM transfer..."}</p>
+                    </div>
+                  </div>
+
+                  {/* RDV confirmé */}
+                  <div className="px-4 pb-6">
+                    <div className="bg-gradient-to-r from-primary/10 to-accent/5 rounded-xl px-4 py-3 flex items-center gap-2.5">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary shrink-0">
+                        <rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
+                      </svg>
+                      <p className="text-xs text-primary font-semibold">{lang === "fr" ? "RDV confirmé — Jeu. 14h" : "Meeting confirmed — Thu. 2pm"}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="flex gap-1.5">
-                <span className="text-[7px] bg-accent/10 text-accent-light rounded px-1.5 py-0.5">{lang === "fr" ? "Qualifié" : "Qualified"}</span>
-                <span className="text-[7px] bg-primary/10 text-primary rounded px-1.5 py-0.5">{lang === "fr" ? "150 appels/j" : "150 calls/day"}</span>
-                <span className="text-[7px] bg-accent/10 text-accent rounded px-1.5 py-0.5">{lang === "fr" ? "Intéressé" : "Interested"}</span>
-              </div>
-            </div>
-            {/* RDV */}
-            <div className="bg-accent/10 rounded-lg px-3 py-2 flex items-center gap-2">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent shrink-0">
-                <rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
-              </svg>
-              <p className="text-[9px] text-accent font-medium">{lang === "fr" ? "RDV planifié — Jeu. 14h" : "Meeting booked — Thu. 2pm"}</p>
-            </div>
-          </div>
-
-          {/* ── Carte bas-gauche: Intégration CRM ── */}
-          <div className="absolute left-4 md:left-12 bottom-4 w-[180px] glass rounded-xl px-3 py-2.5 shadow-lg z-10">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded bg-white/10 flex items-center justify-center">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-[9px] text-white font-medium">HubSpot CRM</p>
-                <p className="text-[7px] text-accent-light">{lang === "fr" ? "Synchronisé" : "Synced"}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* ── Carte bas-droite: Stat conversion ── */}
-          <div className="absolute right-4 md:right-12 bottom-8 glass rounded-xl px-3 py-2.5 shadow-lg z-10">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded bg-accent/10 flex items-center justify-center">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent-light">
-                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-[9px] text-white font-medium">+45% conversion</p>
-                <p className="text-[7px] text-accent-light">{lang === "fr" ? "Ce mois" : "This month"}</p>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* ── Stats row ── */}
-        <div className="flex flex-wrap justify-center gap-10 mt-12 animate-fade-in-up animation-delay-600">
-          <div className="text-center">
-            <p className="text-2xl font-bold gradient-text">{t.hero.stat1Value[lang]}</p>
-            <p className="text-xs text-gray-400">{t.hero.stat1Label[lang]}</p>
-          </div>
-          <div className="text-center">
-            <p className="text-2xl font-bold gradient-text">{t.hero.stat2Value[lang]}</p>
-            <p className="text-xs text-gray-400">{t.hero.stat2Label[lang]}</p>
-          </div>
-          <div className="text-center">
-            <p className="text-2xl font-bold gradient-text">{t.hero.stat3Value[lang]}</p>
-            <p className="text-xs text-gray-400">{t.hero.stat3Label[lang]}</p>
-          </div>
-        </div>
       </div>
 
       {/* CSS for sound bars */}

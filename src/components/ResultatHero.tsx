@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 
 export default function ResultatHero() {
   const { lang } = useLang();
@@ -12,6 +13,22 @@ export default function ResultatHero() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-accent/8 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
+        {/* Stats row */}
+        <div className="flex flex-wrap justify-center gap-12 md:gap-20 mb-16">
+          <div className="text-center">
+            <p className="text-4xl md:text-5xl font-bold gradient-text">{t.hero.stat1Value[lang]}</p>
+            <p className="text-sm text-slate-400 mt-1">{t.hero.stat1Label[lang]}</p>
+          </div>
+          <div className="text-center">
+            <p className="text-4xl md:text-5xl font-bold gradient-text">{t.hero.stat2Value[lang]}</p>
+            <p className="text-sm text-slate-400 mt-1">{t.hero.stat2Label[lang]}</p>
+          </div>
+          <div className="text-center">
+            <p className="text-4xl md:text-5xl font-bold gradient-text">{t.hero.stat3Value[lang]}</p>
+            <p className="text-sm text-slate-400 mt-1">{t.hero.stat3Label[lang]}</p>
+          </div>
+        </div>
+
         {/* Text */}
         <div className="text-center mb-12">
           <p className="text-sm font-medium text-accent uppercase tracking-wider mb-4">
