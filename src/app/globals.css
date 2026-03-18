@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #4DAFFF;
-  --color-primary-light: #7DC4FF;
-  --color-primary-dark: #2B8FE0;
-  --color-accent: #7B61FF;
-  --color-accent-light: #9B85FF;
+  --color-primary: #7B61FF;
+  --color-primary-light: #9B85FF;
+  --color-primary-dark: #6246E5;
+  --color-accent: #D946EF;
+  --color-accent-light: #E879F9;
   --color-surface: #111118;
   --color-surface-light: #1a1a24;
   --color-surface-dark: #0B0B0F;
@@ -119,10 +119,10 @@ body {
 
 @keyframes pulse-soft {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(123, 97, 255, 0.4);
+    box-shadow: 0 0 0 0 rgba(217, 70, 239, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(123, 97, 255, 0);
+    box-shadow: 0 0 0 10px rgba(217, 70, 239, 0);
   }
 }
 

@@ -131,27 +131,27 @@ export const articles: BlogArticle[] = [
       <tr class="border-b border-white/5">
         <td class="py-3 px-4">Compréhension</td>
         <td class="py-3 px-4">Mots-clés uniquement</td>
-        <td class="py-3 px-4 text-emerald-400">Langage naturel complet</td>
+        <td class="py-3 px-4 text-purple-400">Langage naturel complet</td>
       </tr>
       <tr class="border-b border-white/5">
         <td class="py-3 px-4">Expérience</td>
         <td class="py-3 px-4">Menus rigides</td>
-        <td class="py-3 px-4 text-emerald-400">Conversation fluide</td>
+        <td class="py-3 px-4 text-purple-400">Conversation fluide</td>
       </tr>
       <tr class="border-b border-white/5">
         <td class="py-3 px-4">Personnalisation</td>
         <td class="py-3 px-4">Limitée</td>
-        <td class="py-3 px-4 text-emerald-400">Voix, ton, scénarios sur mesure</td>
+        <td class="py-3 px-4 text-purple-400">Voix, ton, scénarios sur mesure</td>
       </tr>
       <tr class="border-b border-white/5">
         <td class="py-3 px-4">Intégration CRM</td>
         <td class="py-3 px-4">Rarement</td>
-        <td class="py-3 px-4 text-emerald-400">Native (HubSpot, Salesforce…)</td>
+        <td class="py-3 px-4 text-purple-400">Native (HubSpot, Salesforce…)</td>
       </tr>
       <tr class="border-b border-white/5">
         <td class="py-3 px-4">Taux de résolution</td>
         <td class="py-3 px-4">30-40%</td>
-        <td class="py-3 px-4 text-emerald-400">80-90%</td>
+        <td class="py-3 px-4 text-purple-400">80-90%</td>
       </tr>
     </tbody>
   </table>

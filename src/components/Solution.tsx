@@ -29,7 +29,7 @@ export default function Solution() {
           {t.solution.items.map((item, index) => (
             <div key={index} className="glass rounded-xl p-5 flex items-start gap-4">
               <svg
-                className="w-6 h-6 text-emerald-400 shrink-0 mt-0.5"
+                className="w-6 h-6 text-accent-light shrink-0 mt-0.5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

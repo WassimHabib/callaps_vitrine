@@ -85,19 +85,19 @@ export default function Hero() {
               {/* Screen */}
               <div className="rounded-[2rem] bg-gradient-to-b from-[#111118] to-[#0B0B0F] overflow-hidden">
                 {/* Call header */}
-                <div className="bg-emerald-500/10 px-4 pt-7 pb-3 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald-400">
+                <div className="bg-accent/10 px-4 pt-7 pb-3 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent-light">
                       <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                     </svg>
                   </div>
                   <div className="flex-1">
                     <p className="text-[11px] text-white font-medium">{lang === "fr" ? "Appel en cours" : "Call in progress"}</p>
-                    <p className="text-[9px] text-emerald-400">02:34 — {lang === "fr" ? "Agent IA actif" : "AI Agent active"}</p>
+                    <p className="text-[9px] text-accent-light">02:34 — {lang === "fr" ? "Agent IA actif" : "AI Agent active"}</p>
                   </div>
                   <div className="flex gap-0.5">
                     {[1, 2, 3, 4, 5].map((i) => (
-                      <div key={i} className="w-[3px] rounded-full bg-emerald-400" style={{ height: `${6 + Math.sin(i * 1.2) * 6}px`, animation: `soundbar 0.${3 + i}s ease-in-out infinite alternate` }} />
+                      <div key={i} className="w-[3px] rounded-full bg-accent-light" style={{ height: `${6 + Math.sin(i * 1.2) * 6}px`, animation: `soundbar 0.${3 + i}s ease-in-out infinite alternate` }} />
                     ))}
                   </div>
                 </div>
@@ -149,7 +149,7 @@ export default function Hero() {
                 <p className="text-[8px] text-slate-500">{lang === "fr" ? "Appels traités" : "Calls handled"}</p>
               </div>
               <div className="bg-white/5 rounded-lg p-2">
-                <p className="text-base font-bold text-emerald-400">+34</p>
+                <p className="text-base font-bold text-accent-light">+34</p>
                 <p className="text-[8px] text-slate-500">{lang === "fr" ? "Leads générés" : "Leads generated"}</p>
               </div>
             </div>
@@ -164,9 +164,9 @@ export default function Hero() {
           {/* ── Carte droite: Lead + RDV ── */}
           <div className="absolute right-0 top-4 md:top-8 w-[200px] md:w-[230px] glass rounded-2xl p-4 shadow-xl z-10">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-2 h-2 rounded-full bg-emerald-400" />
+              <div className="w-2 h-2 rounded-full bg-accent-light" />
               <span className="text-[10px] text-slate-400 font-medium">{lang === "fr" ? "Dernier lead" : "Latest lead"}</span>
-              <span className="text-[8px] text-emerald-400 ml-auto">{lang === "fr" ? "Il y a 2 min" : "2 min ago"}</span>
+              <span className="text-[8px] text-accent-light ml-auto">{lang === "fr" ? "Il y a 2 min" : "2 min ago"}</span>
             </div>
             {/* Lead card */}
             <div className="bg-white/5 rounded-xl p-3 mb-2">
@@ -178,7 +178,7 @@ export default function Hero() {
                 </div>
               </div>
               <div className="flex gap-1.5">
-                <span className="text-[7px] bg-emerald-500/10 text-emerald-400 rounded px-1.5 py-0.5">{lang === "fr" ? "Qualifié" : "Qualified"}</span>
+                <span className="text-[7px] bg-accent/10 text-accent-light rounded px-1.5 py-0.5">{lang === "fr" ? "Qualifié" : "Qualified"}</span>
                 <span className="text-[7px] bg-primary/10 text-primary rounded px-1.5 py-0.5">{lang === "fr" ? "150 appels/j" : "150 calls/day"}</span>
                 <span className="text-[7px] bg-accent/10 text-accent rounded px-1.5 py-0.5">{lang === "fr" ? "Intéressé" : "Interested"}</span>
               </div>
@@ -202,7 +202,7 @@ export default function Hero() {
               </div>
               <div>
                 <p className="text-[9px] text-white font-medium">HubSpot CRM</p>
-                <p className="text-[7px] text-emerald-400">{lang === "fr" ? "Synchronisé" : "Synced"}</p>
+                <p className="text-[7px] text-accent-light">{lang === "fr" ? "Synchronisé" : "Synced"}</p>
               </div>
             </div>
           </div>
@@ -210,14 +210,14 @@ export default function Hero() {
           {/* ── Carte bas-droite: Stat conversion ── */}
           <div className="absolute right-4 md:right-12 bottom-8 glass rounded-xl px-3 py-2.5 shadow-lg z-10">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded bg-emerald-500/10 flex items-center justify-center">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald-400">
+              <div className="w-6 h-6 rounded bg-accent/10 flex items-center justify-center">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent-light">
                   <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />
                 </svg>
               </div>
               <div>
                 <p className="text-[9px] text-white font-medium">+45% conversion</p>
-                <p className="text-[7px] text-emerald-400">{lang === "fr" ? "Ce mois" : "This month"}</p>
+                <p className="text-[7px] text-accent-light">{lang === "fr" ? "Ce mois" : "This month"}</p>
               </div>
             </div>
           </div>

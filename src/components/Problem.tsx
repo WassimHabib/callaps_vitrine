@@ -25,7 +25,7 @@ export default function Problem() {
             <div key={index} className="glass rounded-xl p-4 flex items-start gap-4">
               {/* Red X icon */}
               <svg
-                className="w-6 h-6 text-red-400 shrink-0 mt-0.5"
+                className="w-6 h-6 text-accent shrink-0 mt-0.5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -41,9 +41,9 @@ export default function Problem() {
         {/* Result */}
         <div className="glass rounded-xl p-6 mt-8 text-center relative overflow-hidden">
           {/* Subtle red/orange glow */}
-          <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-orange-500/10 to-red-500/10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-primary/10 to-accent/10 pointer-events-none" />
           <p className="relative text-xl font-semibold text-white">
-            <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-[length:100%_2px] bg-no-repeat bg-bottom pb-1">
+            <span className="bg-gradient-to-r from-accent to-primary bg-[length:100%_2px] bg-no-repeat bg-bottom pb-1">
               {t.problem.result[lang]}
             </span>
           </p>

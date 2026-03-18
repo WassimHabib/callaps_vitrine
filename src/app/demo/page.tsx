@@ -448,7 +448,7 @@ function CalendarBooking() {
                   } ${isToday ? "ring-1 ring-primary/50" : ""} ${!past && available ? "bg-primary/5" : ""}`}>
                   {day}
                   {isToday && <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />}
-                  {!past && available && <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-emerald-400" />}
+                  {!past && available && <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent-light" />}
                 </button>
               );
             })}
@@ -560,8 +560,8 @@ function CalendarBooking() {
       {/* Confirmation view */}
       {step === "confirmed" && selectedDate && selectedSlot && (
         <div style={{ animation: "fadeSlideUp 0.3s ease-out" }} className="text-center py-8">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center mx-auto mb-6 ring-4 ring-emerald-500/10">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald-400"><polyline points="20 6 9 17 4 12" /></svg>
+          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mx-auto mb-6 ring-4 ring-accent/10">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent-light"><polyline points="20 6 9 17 4 12" /></svg>
           </div>
           <h3 className="text-2xl font-bold text-white mb-2">Rendez-vous confirmé !</h3>
           <p className="text-slate-400 mb-6">Merci {formData.name.split(" ")[0]}, nous avons hâte d&apos;échanger avec vous.</p>
@@ -581,7 +581,7 @@ function CalendarBooking() {
               <span className="text-white text-sm">{selectedSlot ? formatSlotTime(selectedSlot.time) : ""} — 30 minutes</span>
             </div>
             <div className="flex items-center gap-3">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald-400"><polyline points="20 6 9 17 4 12" /></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent-light"><polyline points="20 6 9 17 4 12" /></svg>
               <span className="text-white text-sm">Vous recevrez un email de confirmation</span>
             </div>
           </div>
@@ -638,7 +638,7 @@ export default function DemoPage() {
         {/* Title */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-slate-400 mb-6">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="w-2 h-2 rounded-full bg-accent-light animate-pulse" />
             Démo interactive
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
@@ -693,7 +693,7 @@ export default function DemoPage() {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="text-emerald-400"
+              className="text-accent-light"
             >
               <polyline points="20 6 9 17 4 12" />
             </svg>
@@ -707,7 +707,7 @@ export default function DemoPage() {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="text-emerald-400"
+              className="text-accent-light"
             >
               <polyline points="20 6 9 17 4 12" />
             </svg>
@@ -721,7 +721,7 @@ export default function DemoPage() {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="text-emerald-400"
+              className="text-accent-light"
             >
               <polyline points="20 6 9 17 4 12" />
             </svg>
