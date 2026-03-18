@@ -7,9 +7,10 @@ export default function Solution() {
   const { lang } = useLang();
 
   return (
-    <section id="solution" className="relative bg-surface-dark py-24 px-6 overflow-hidden">
-      {/* Decorative gradient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+    <section id="solution" className="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-[#0B0B0F] via-surface to-surface-dark">
+      {/* Gradient glow — le glow coloré descend ici */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-accent/8 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-[20%] right-[15%] w-[400px] h-[300px] bg-primary/6 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Title */}
@@ -24,10 +25,9 @@ export default function Solution() {
         </p>
 
         {/* Solution items */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 max-w-2xl mx-auto">
           {t.solution.items.map((item, index) => (
-            <div key={index} className="glass rounded-xl p-4 flex items-start gap-4">
-              {/* Green checkmark icon */}
+            <div key={index} className="glass rounded-xl p-5 flex items-start gap-4">
               <svg
                 className="w-6 h-6 text-emerald-400 shrink-0 mt-0.5"
                 fill="none"
