@@ -100,11 +100,18 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Signature */}
+        <div className="mt-10 mb-6 text-center">
+          <p className="text-lg font-semibold gradient-text">
+            {lang === "fr" ? "Chaque appel compte." : "Every call counts."}
+          </p>
+        </div>
+
         {/* Divider */}
-        <div className="my-8 border-t border-white/5" />
+        <div className="border-t border-white/5" />
 
         {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-slate-500">
             {t.footer.copyright[lang]}
           </p>
