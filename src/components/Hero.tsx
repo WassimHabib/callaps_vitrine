@@ -64,13 +64,13 @@ export default function Hero() {
         </div>
 
         {/* ── Phone showcase — centré, grand, dépasse en bas comme droper.ai ── */}
-        <div className="relative flex justify-center mt-12 -mb-48 md:-mb-64 animate-fade-in-up animation-delay-600">
+        <div className="relative flex justify-center mt-8 md:mt-12 -mb-24 md:-mb-64 animate-fade-in-up animation-delay-600">
 
           {/* Glow behind elements */}
           <img src="/glow-bg.png" alt="" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] md:w-[1200px] pointer-events-none z-0 opacity-80" />
 
-          {/* Carte haut-gauche */}
-          <div className="absolute left-2 md:left-8 top-4 md:top-10 z-10 bg-white rounded-2xl border border-gray-100 shadow-lg p-4 w-[180px] md:w-[220px]">
+          {/* Carte haut-gauche — desktop only */}
+          <div className="absolute left-2 md:left-8 top-4 md:top-10 z-10 bg-white rounded-2xl border border-gray-100 shadow-lg p-4 w-[180px] md:w-[220px] hidden md:block">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-2 h-2 rounded-full bg-accent" />
               <span className="text-[11px] text-gray-500 font-medium">{lang === "fr" ? "Dernier lead" : "Latest lead"}</span>
@@ -88,8 +88,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Carte haut-droite */}
-          <div className="absolute right-2 md:right-8 top-8 md:top-14 z-10 bg-white rounded-2xl border border-gray-100 shadow-lg p-4 w-[170px] md:w-[210px]">
+          {/* Carte haut-droite — desktop only */}
+          <div className="absolute right-2 md:right-8 top-8 md:top-14 z-10 bg-white rounded-2xl border border-gray-100 shadow-lg p-4 w-[170px] md:w-[210px] hidden md:block">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-2 h-2 rounded-full bg-primary" />
               <span className="text-[11px] text-gray-500 font-medium">Analytics</span>
@@ -114,7 +114,7 @@ export default function Hero() {
           {/* Phone */}
           <div
             ref={phoneRef}
-            className="relative z-20 w-[320px] md:w-[380px]"
+            className="relative z-20 w-[240px] md:w-[380px]"
             style={{ transition: "transform 0.1s linear" }}
           >
             {/* iPhone frame */}
