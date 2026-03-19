@@ -144,35 +144,49 @@ export default function Hero() {
                     </div>
                   </div>
 
-                  {/* Transcription — rallongée */}
-                  <div className="px-4 py-4 space-y-3">
-                    <div className="flex items-start gap-2.5">
-                      <span className="text-xs text-accent font-bold mt-0.5 shrink-0">IA</span>
-                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "Bonjour, Callaps, comment puis-je vous aider ?" : "Hello, Callaps, how can I help?"}</p>
+                  {/* Chat bubbles */}
+                  <div className="px-3 py-4 space-y-2.5">
+                    {/* IA — gauche */}
+                    <div className="flex justify-start">
+                      <div className="bg-gray-100 rounded-2xl rounded-tl-sm px-3.5 py-2.5 max-w-[85%]">
+                        <p className="text-sm text-gray-800 leading-relaxed">{lang === "fr" ? "Bonjour, Callaps, comment puis-je vous aider ?" : "Hello, Callaps, how can I help?"}</p>
+                      </div>
                     </div>
-                    <div className="flex items-start gap-2.5">
-                      <span className="text-xs text-primary font-bold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
-                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "Je cherche une solution pour automatiser nos appels." : "I'm looking to automate our calls."}</p>
+                    {/* Client — droite */}
+                    <div className="flex justify-end">
+                      <div className="bg-gradient-to-r from-primary to-accent rounded-2xl rounded-tr-sm px-3.5 py-2.5 max-w-[85%]">
+                        <p className="text-sm text-white leading-relaxed">{lang === "fr" ? "Je cherche une solution pour automatiser nos appels." : "I'm looking to automate our calls."}</p>
+                      </div>
                     </div>
-                    <div className="flex items-start gap-2.5">
-                      <span className="text-xs text-accent font-bold mt-0.5 shrink-0">IA</span>
-                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "Bien sûr ! Combien d'appels recevez-vous par jour ?" : "Of course! How many calls do you get per day?"}</p>
+                    {/* IA — gauche */}
+                    <div className="flex justify-start">
+                      <div className="bg-gray-100 rounded-2xl rounded-tl-sm px-3.5 py-2.5 max-w-[85%]">
+                        <p className="text-sm text-gray-800 leading-relaxed">{lang === "fr" ? "Combien d'appels recevez-vous par jour ?" : "How many calls do you get per day?"}</p>
+                      </div>
                     </div>
-                    <div className="flex items-start gap-2.5">
-                      <span className="text-xs text-primary font-bold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
-                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "Environ 150 par jour, et on en rate beaucoup." : "About 150 per day, and we miss a lot."}</p>
+                    {/* Client — droite */}
+                    <div className="flex justify-end">
+                      <div className="bg-gradient-to-r from-primary to-accent rounded-2xl rounded-tr-sm px-3.5 py-2.5 max-w-[75%]">
+                        <p className="text-sm text-white leading-relaxed">{lang === "fr" ? "Environ 150 par jour." : "About 150 per day."}</p>
+                      </div>
                     </div>
-                    <div className="flex items-start gap-2.5">
-                      <span className="text-xs text-accent font-bold mt-0.5 shrink-0">IA</span>
-                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "Notre agent IA peut tous les traiter, 24h/24. Je vous propose un créneau pour une démo ?" : "Our AI agent can handle all of them, 24/7. Can I book a demo slot for you?"}</p>
+                    {/* IA — gauche */}
+                    <div className="flex justify-start">
+                      <div className="bg-gray-100 rounded-2xl rounded-tl-sm px-3.5 py-2.5 max-w-[85%]">
+                        <p className="text-sm text-gray-800 leading-relaxed">{lang === "fr" ? "Notre agent peut tous les gérer, 24h/24. Un créneau pour une démo ?" : "Our agent can handle all of them, 24/7. Want a demo slot?"}</p>
+                      </div>
                     </div>
-                    <div className="flex items-start gap-2.5">
-                      <span className="text-xs text-primary font-bold mt-0.5 shrink-0">{lang === "fr" ? "Client" : "Client"}</span>
-                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "Oui, jeudi 14h si possible." : "Yes, Thursday 2pm if possible."}</p>
+                    {/* Client — droite */}
+                    <div className="flex justify-end">
+                      <div className="bg-gradient-to-r from-primary to-accent rounded-2xl rounded-tr-sm px-3.5 py-2.5 max-w-[75%]">
+                        <p className="text-sm text-white leading-relaxed">{lang === "fr" ? "Oui, jeudi 14h !" : "Yes, Thursday 2pm!"}</p>
+                      </div>
                     </div>
-                    <div className="flex items-start gap-2.5">
-                      <span className="text-xs text-accent font-bold mt-0.5 shrink-0">IA</span>
-                      <p className="text-sm text-gray-700 leading-relaxed">{lang === "fr" ? "C'est noté ! RDV confirmé jeudi à 14h. Bonne journée !" : "Noted! Meeting confirmed Thursday at 2pm. Have a great day!"}</p>
+                    {/* IA — gauche */}
+                    <div className="flex justify-start">
+                      <div className="bg-gray-100 rounded-2xl rounded-tl-sm px-3.5 py-2.5 max-w-[85%]">
+                        <p className="text-sm text-gray-800 leading-relaxed">{lang === "fr" ? "C'est noté ! RDV confirmé. Bonne journée !" : "Noted! Meeting confirmed. Have a great day!"}</p>
+                      </div>
                     </div>
                   </div>
 
