@@ -63,11 +63,13 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* ── Phone showcase — centré, grand, dépasse en bas comme droper.ai ── */}
-        <div className="relative flex justify-center mt-16 md:mt-20 -mb-32 md:-mb-64 animate-fade-in-up animation-delay-600 max-h-[400px] md:max-h-none overflow-hidden">
+        {/* Glow behind phone — en dehors du overflow-hidden */}
+        <div className="relative flex justify-center mt-16 md:mt-20 pointer-events-none">
+          <img src="/glow-bg.png" alt="" className="w-[700px] md:w-[1200px] opacity-80" />
+        </div>
 
-          {/* Glow behind elements */}
-          <img src="/glow-bg.png" alt="" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] md:w-[1200px] pointer-events-none z-0 opacity-80" />
+        {/* ── Phone showcase — centré, grand, dépasse en bas ── */}
+        <div className="relative flex justify-center -mt-[350px] md:-mt-[500px] -mb-32 md:-mb-64 animate-fade-in-up animation-delay-600 max-h-[400px] md:max-h-none overflow-hidden">
 
           {/* Carte haut-gauche — desktop only */}
           <div className="absolute left-2 md:left-8 top-4 md:top-10 z-10 bg-white rounded-2xl border border-gray-100 shadow-lg p-4 w-[180px] md:w-[220px] hidden md:block">
