@@ -27,7 +27,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-20 w-full">
         {/* ── Top: Text centered ── */}
-        <div className="relative z-30 text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <p className="text-sm font-medium text-accent mb-4 tracking-wide uppercase animate-fade-in-up">
             {lang === "fr" ? "Chaque appel compte." : "Every call counts."}
           </p>
@@ -64,7 +64,7 @@ export default function Hero() {
         </div>
 
         {/* ── Phone showcase — centré, grand, dépasse en bas comme droper.ai ── */}
-        <div className="relative flex justify-center mt-8 md:mt-12 -mb-32 md:-mb-64 animate-fade-in-up animation-delay-600 max-h-[400px] md:max-h-none overflow-hidden">
+        <div className="relative flex justify-center mt-16 md:mt-20 -mb-32 md:-mb-64 animate-fade-in-up animation-delay-600 max-h-[400px] md:max-h-none overflow-hidden">
 
           {/* Glow behind elements */}
           <img src="/glow-bg.png" alt="" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] md:w-[1200px] pointer-events-none z-0 opacity-80" />
