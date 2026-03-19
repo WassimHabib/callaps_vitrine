@@ -27,7 +27,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-20 w-full">
         {/* ── Top: Text centered ── */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="relative z-30 text-center max-w-3xl mx-auto mb-16">
           <p className="text-sm font-medium text-accent mb-4 tracking-wide uppercase animate-fade-in-up">
             {lang === "fr" ? "Chaque appel compte." : "Every call counts."}
           </p>
