@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
       formattedPhone = "+" + formattedPhone;
     }
 
-    const calRes = await fetch("https://app.callaps.com/api/v1/calls", {
+    const calRes = await fetch("https://callaps.ai/api/v1/calls", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
