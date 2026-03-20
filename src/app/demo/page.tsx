@@ -595,6 +595,138 @@ function CalendarBooking() {
   );
 }
 
+/* ─── Tester l'agent — formulaire d'appel ── */
+function DemoTabs() {
+  const [callState, setCallState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [callPhone, setCallPhone] = useState("");
+  const [callName, setCallName] = useState("");
+  const [callError, setCallError] = useState("");
+
+  async function handleCallRequest(e: React.FormEvent) {
+    e.preventDefault();
+    if (!callPhone) return;
+    setCallState("sending");
+    setCallError("");
+
+    try {
+      const res = await fetch("/api/call", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: callName, phone: callPhone }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        setCallError(data.details || data.error || "Erreur");
+        setCallState("error");
+        return;
+      }
+      setCallState("sent");
+    } catch {
+      setCallError("Erreur de connexion");
+      setCallState("error");
+    }
+  }
+
+  return (
+    <div className="max-w-2xl mx-auto">
+      <div className="rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm p-8 md:p-10">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-4">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-2">
+            Testez notre agent IA en direct
+          </h2>
+          <p className="text-slate-400">
+            Entrez votre numéro et notre agent vous appelle dans les 30 secondes.
+          </p>
+        </div>
+
+        {callState === "sent" ? (
+          <div className="text-center py-8">
+            <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-6 ring-4 ring-accent/10">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-white mb-2">
+              Appel en cours !
+            </h3>
+            <p className="text-slate-400 mb-2">
+              Notre agent IA vous appelle sur le <span className="text-white font-medium">{callPhone}</span>
+            </p>
+            <p className="text-sm text-slate-500">
+              Décrochez, l&apos;agent va se présenter et vous montrer ce qu&apos;il peut faire.
+            </p>
+            <button
+              onClick={() => { setCallState("idle"); setCallPhone(""); setCallName(""); }}
+              className="mt-6 text-sm text-accent hover:text-accent-light transition-colors"
+            >
+              Relancer un appel
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleCallRequest} className="space-y-4">
+            <div>
+              <label className="block text-sm text-slate-400 mb-1.5">Votre prénom</label>
+              <input
+                type="text"
+                value={callName}
+                onChange={(e) => setCallName(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-600 focus:border-accent/50 focus:ring-1 focus:ring-accent/25 outline-none transition-all text-sm"
+                placeholder="Jean"
+              />
+            </div>
+            <div>
+              <label className="block text-sm text-slate-400 mb-1.5">Votre numéro de téléphone *</label>
+              <input
+                type="tel"
+                required
+                value={callPhone}
+                onChange={(e) => setCallPhone(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-600 focus:border-accent/50 focus:ring-1 focus:ring-accent/25 outline-none transition-all text-sm"
+                placeholder="06 12 34 56 78"
+              />
+            </div>
+
+            {callState === "error" && (
+              <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                {callError}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={callState === "sending"}
+              className={`w-full py-4 rounded-xl font-semibold text-base transition-all duration-300 ${
+                callState === "sending"
+                  ? "bg-white/10 text-slate-400 cursor-wait"
+                  : "bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.01] active:scale-[0.99]"
+              }`}
+            >
+              {callState === "sending" ? "Lancement de l'appel..." : "Recevoir un appel maintenant"}
+            </button>
+
+            <p className="text-xs text-slate-500 text-center">
+              Gratuit · Sans engagement · L&apos;agent vous appelle en 30 secondes
+            </p>
+          </form>
+        )}
+      </div>
+
+      {/* Or separator */}
+      <div className="flex items-center gap-4 my-10">
+        <div className="flex-1 h-px bg-white/10" />
+        <span className="text-sm text-slate-500">ou</span>
+        <div className="flex-1 h-px bg-white/10" />
+      </div>
+    </div>
+  );
+}
+
 /* ─── Page principale ─── */
 export default function DemoPage() {
   return (
@@ -646,40 +778,25 @@ export default function DemoPage() {
             <span className="gradient-text">agent IA en direct</span>
           </h1>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Découvrez comment notre agent conversationnel gère un appel, puis
-            réservez un créneau pour une démonstration personnalisée.
+            Recevez un appel de notre agent IA en 30 secondes, ou réservez un créneau pour une démonstration personnalisée.
           </p>
         </div>
 
-        {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          {/* Left: Phone demo */}
-          <div>
-            <div className="text-center mb-8 lg:text-left">
-              <h2 className="text-xl font-semibold text-white mb-2">
-                Simulation d&apos;appel IA
-              </h2>
-              <p className="text-sm text-slate-400">
-                Observez une conversation type entre un client et notre agent
-              </p>
-            </div>
-            <PhoneWidget />
-          </div>
+        {/* Tabs */}
+        <DemoTabs />
 
-          {/* Right: Calendar booking */}
-          <div>
-            <div className="mb-8 lg:text-left text-center">
-              <h2 className="text-xl font-semibold text-white mb-2">
-                Prendre rendez-vous
-              </h2>
-              <p className="text-sm text-slate-400">
-                30 minutes pour découvrir comment Callaps peut transformer vos
-                appels
-              </p>
-            </div>
-            <div className="rounded-3xl bg-slate-900/80 border border-white/10 p-6 sm:p-8 backdrop-blur-sm">
-              <CalendarBooking />
-            </div>
+        {/* Calendar booking section */}
+        <div className="max-w-2xl mx-auto" id="booking">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-white mb-2">
+              Réserver un créneau
+            </h2>
+            <p className="text-sm text-slate-400">
+              30 minutes pour découvrir comment Callaps peut transformer vos appels
+            </p>
+          </div>
+          <div className="rounded-3xl bg-white/5 border border-white/10 p-6 sm:p-8 backdrop-blur-sm">
+            <CalendarBooking />
           </div>
         </div>
 
