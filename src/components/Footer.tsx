@@ -117,13 +117,13 @@ export default function Footer() {
           </p>
           <div className="flex gap-6">
             <a
-              href="#legal"
+              href="/mentions-legales"
               className="text-sm text-slate-500 transition-colors duration-200 hover:text-slate-300"
             >
               {t.footer.legal[lang]}
             </a>
             <a
-              href="#privacy"
+              href="/confidentialite"
               className="text-sm text-slate-500 transition-colors duration-200 hover:text-slate-300"
             >
               {t.footer.privacy[lang]}

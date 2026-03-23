@@ -29,5 +29,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     ...blogEntries,
+    {
+      url: 'https://callaps.fr/mentions-legales',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: 'https://callaps.fr/confidentialite',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
   ]
 }
