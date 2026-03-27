@@ -235,7 +235,7 @@ export const t = {
     plans: [
       {
         name: { fr: "Starter", en: "Starter" },
-        price: { fr: "180€", en: "€180" },
+        price: { fr: "230€", en: "€230" },
         description: {
           fr: "Ne ratez plus aucun appel et automatisez vos premiers leads.",
           en: "Never miss a call again and automate your first leads.",
@@ -251,7 +251,7 @@ export const t = {
       },
       {
         name: { fr: "Business", en: "Business" },
-        price: { fr: "299€", en: "€299" },
+        price: { fr: "350€", en: "€350" },
         description: {
           fr: "Automatisez et optimisez toute votre gestion d'appels.",
           en: "Automate and optimize your entire call management.",
