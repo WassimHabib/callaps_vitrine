@@ -31,3 +31,4 @@ export { StickerEuro } from "./euro";
 export { StickerStar } from "./star";
 export { StickerQuote } from "./quote";
 export { StickerPlus } from "./plus";
+export { StickerMessage } from "./message";
