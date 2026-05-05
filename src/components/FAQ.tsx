@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
+import { StickerPlus } from "@/components/icons/sticker";
 
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -18,7 +20,7 @@ const faqJsonLd = {
 };
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
   const { lang } = useLang();
 
   const toggle = (index: number) => {
@@ -26,60 +28,83 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="bg-surface/50 py-24 px-4">
+    <section id="faq" className="relative py-20 md:py-28 bg-bg-deep overflow-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-4xl font-bold mb-4">
-            <span className="gradient-text">{t.faq.title[lang]}</span>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-card border-[2px] border-stroke text-stroke text-xs font-bold uppercase tracking-wide mb-4 [box-shadow:3px_3px_0_var(--color-stroke)]">
+            FAQ
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-[-0.03em] text-stroke mb-4 leading-tight">
+            {t.faq.title[lang]}
           </h2>
-          <p className="text-slate-400 text-lg">
-            {t.faq.subtitle[lang]}
-          </p>
+          <p className="text-text-muted text-lg">{t.faq.subtitle[lang]}</p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
+        {/* FAQ Items */}
+        <div className="max-w-3xl mx-auto space-y-4">
           {t.faq.items.map((item, index) => {
             const isOpen = openIndex === index;
 
             return (
               <div
                 key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl mb-4"
+                className="bg-card sticker-border sticker-shadow rounded-2xl overflow-hidden"
               >
                 <button
                   onClick={() => toggle(index)}
-                  className="w-full p-6 flex justify-between items-center text-white font-medium cursor-pointer text-left hover:bg-white/5 rounded-xl transition-colors"
+                  className="w-full px-6 py-5 flex justify-between items-center text-stroke font-bold cursor-pointer text-left hover:bg-white/5 transition-colors gap-4"
                 >
-                  <span>{t.faq.items[index].question[lang]}</span>
-                  <svg
-                    className={`w-5 h-5 flex-shrink-0 ml-4 transition-transform duration-300 ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
+                  <span className="text-base md:text-lg leading-snug">
+                    {item.question[lang]}
+                  </span>
+                  <motion.div
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                    className="flex-shrink-0 text-stroke"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
+                    <StickerPlus size={20} />
+                  </motion.div>
                 </button>
 
-                {isOpen && (
-                  <div className="px-6 pb-6 text-slate-400">
-                    {t.faq.items[index].answer[lang]}
-                  </div>
-                )}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0 }}
+                      animate={{ height: "auto" }}
+                      exit={{ height: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <div className="px-6 pb-6 text-text-muted text-base leading-relaxed">
+                        {item.answer[lang]}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}
+        </div>
+
+        {/* Optional CTA */}
+        <div className="mt-12 text-center">
+          <p className="text-text-muted text-sm mb-3">
+            {lang === "fr"
+              ? "Une question pas listée ?"
+              : "A question not listed?"}
+          </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-card border-[2px] border-stroke text-stroke text-sm font-bold [box-shadow:3px_3px_0_var(--color-stroke)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:[box-shadow:5px_5px_0_var(--color-stroke)] transition-transform duration-150"
+          >
+            {lang === "fr" ? "Contactez-nous" : "Contact us"}
+          </a>
         </div>
       </div>
     </section>
