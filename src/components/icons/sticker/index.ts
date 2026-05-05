@@ -10,3 +10,8 @@ export { StickerCalendar } from "./calendar";
 export { StickerPhoneMissed } from "./phone-missed";
 export { StickerCog } from "./cog";
 export { StickerCodeBrackets } from "./code-brackets";
+export { StickerGlobe } from "./globe";
+export { StickerBoltFlash } from "./bolt-flash";
+export { StickerClock247 } from "./clock-247";
+export { StickerShield } from "./shield";
+export { StickerHeadset } from "./headset";
