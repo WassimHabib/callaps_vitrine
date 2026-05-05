@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
+import { StickerCalendar, StickerArrowRight } from "@/components/icons/sticker";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -17,8 +18,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleNavClick = () => setMobileOpen(false);
-
   const navLinks = [
     { label: t.nav.features[lang], href: "#solution" },
     { label: t.nav.pricing[lang], href: "#pricing" },
@@ -28,160 +27,88 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-xl shadow-md"
-          : "bg-white/80 backdrop-blur-sm"
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 bg-bg-deep ${
+        scrolled ? "border-b-[2px] border-stroke/30" : "border-b-[2px] border-transparent"
       }`}
     >
-      <nav className={`mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-6 transition-all duration-300 ${scrolled ? "py-3 md:py-4" : ""}`} style={scrolled ? undefined : { padding: "27px" }}>
-        {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/logo.png"
-            alt="Callaps"
-            width={360}
-            height={100}
-            className={`w-auto transition-all duration-300 ${scrolled ? "h-8 md:h-10" : "h-12 md:h-14"}`}
-            priority
-          />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 lg:h-20 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2">
+          <Image src="/logo.png" alt="callaps" width={32} height={32} className="w-8 h-8" />
+          <span className="hidden sm:inline font-black text-stroke text-lg tracking-tight">callaps</span>
         </Link>
 
-        {/* Desktop nav links */}
-        <ul className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  scrolled ? "text-gray-600 hover:text-gray-900" : "text-gray-600 hover:text-gray-900"
-                }`}
-              >
-                {link.label}
-              </a>
-            </li>
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileOpen(false)}
+              className="text-stroke/80 font-bold hover:text-stroke transition-colors"
+            >
+              {link.label}
+            </Link>
           ))}
-        </ul>
+        </nav>
 
-        {/* Desktop language selector + CTA */}
-        <div className="hidden md:flex items-center gap-4">
-          {/* Language selector */}
-          <div className="flex items-center gap-1 rounded-lg p-1 bg-gray-100">
-            <button
-              type="button"
-              onClick={() => setLang("fr")}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
-                lang === "fr" ? "bg-white text-gray-900 shadow-sm" : "text-gray-400"
-              }`}
-            >
-              FR
-            </button>
-            <button
-              type="button"
-              onClick={() => setLang("en")}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
-                lang === "en" ? "bg-white text-gray-900 shadow-sm" : "text-gray-400"
-              }`}
-            >
-              EN
-            </button>
-          </div>
-
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setLang(lang === "fr" ? "en" : "fr")}
+            className="hidden sm:inline-flex items-center justify-center w-10 h-10 rounded-full bg-card border-[2px] border-stroke text-stroke text-sm font-black [box-shadow:2px_2px_0_var(--color-stroke)]"
+            aria-label="Change language"
+          >
+            {lang === "fr" ? "EN" : "FR"}
+          </button>
           <Link
             href="/demo"
-            className="inline-flex items-center rounded-lg bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-primary/40 hover:scale-105"
+            className="hidden sm:inline-flex items-center gap-2 bg-primary text-stroke px-5 py-2.5 rounded-full font-bold text-sm border-[2.5px] border-stroke [box-shadow:3px_3px_0_var(--color-stroke)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:[box-shadow:5px_5px_0_var(--color-stroke)] transition-transform duration-200"
           >
-            {t.nav.cta[lang]}
+            <StickerCalendar size={16} />
+            <span className="hidden md:inline">{t.nav.cta[lang]}</span>
+            <StickerArrowRight size={14} />
           </Link>
-        </div>
-
-        {/* Mobile hamburger */}
-        <button
-          type="button"
-          aria-label="Toggle menu"
-          aria-expanded={mobileOpen}
-          onClick={() => setMobileOpen((prev) => !prev)}
-          className="relative flex md:hidden h-10 w-10 items-center justify-center rounded-lg text-gray-600 hover:text-gray-900 transition-colors"
-        >
-          <span className="sr-only">Menu</span>
-          <div className="flex flex-col items-center justify-center gap-[5px]">
-            <span
-              className={`block h-[2px] w-5 rounded-full bg-current transition-all duration-300 ${
-                mobileOpen ? "translate-y-[7px] rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`block h-[2px] w-5 rounded-full bg-current transition-all duration-300 ${
-                mobileOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block h-[2px] w-5 rounded-full bg-current transition-all duration-300 ${
-                mobileOpen ? "-translate-y-[7px] -rotate-45" : ""
-              }`}
-            />
-          </div>
-        </button>
-      </nav>
-
-      {/* Mobile menu */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="glass mx-4 mb-4 rounded-xl px-6 py-5">
-          <ul className="flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={handleNavClick}
-                  className="block text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-white"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          {/* Mobile language selector */}
-          <div className="mt-4 flex items-center gap-1 rounded-lg bg-white/5 p-1 w-fit">
-            <button
-              type="button"
-              onClick={() => setLang("fr")}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
-                lang === "fr"
-                  ? "bg-white/10 text-white"
-                  : "text-slate-400"
-              }`}
-            >
-              FR
-            </button>
-            <button
-              type="button"
-              onClick={() => setLang("en")}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200 cursor-pointer ${
-                lang === "en"
-                  ? "bg-white/10 text-white"
-                  : "text-slate-400"
-              }`}
-            >
-              EN
-            </button>
-          </div>
-
-          <div className="mt-5">
-            <Link
-              href="/demo"
-              onClick={handleNavClick}
-              className="block w-full rounded-lg bg-gradient-to-r from-primary to-accent px-5 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-primary/40"
-            >
-              {t.nav.cta[lang]}
-            </Link>
-          </div>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden w-10 h-10 rounded-full bg-card border-[2.5px] border-stroke [box-shadow:2px_2px_0_var(--color-stroke)] flex items-center justify-center"
+            aria-label="Menu"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-stroke">
+              {mobileOpen ? (
+                <path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" />
+              ) : (
+                <>
+                  <line x1="3" y1="6" x2="21" y2="6" strokeLinecap="round" />
+                  <line x1="3" y1="12" x2="21" y2="12" strokeLinecap="round" />
+                  <line x1="3" y1="18" x2="21" y2="18" strokeLinecap="round" />
+                </>
+              )}
+            </svg>
+          </button>
         </div>
       </div>
+
+      {mobileOpen && (
+        <div className="lg:hidden bg-bg-deep border-t-[2px] border-stroke px-4 py-6 space-y-3">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileOpen(false)}
+              className="block bg-card border-[3px] border-stroke [box-shadow:4px_4px_0_var(--color-stroke)] rounded-2xl px-5 py-4 text-stroke font-black text-lg"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="/demo"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center justify-center gap-2 w-full bg-primary text-stroke px-6 py-4 rounded-full font-black text-lg border-[3px] border-stroke [box-shadow:4px_4px_0_var(--color-stroke)] min-h-[56px]"
+          >
+            <StickerCalendar size={20} />
+            {t.nav.cta[lang]}
+            <StickerArrowRight size={18} />
+          </Link>
+        </div>
+      )}
     </header>
   );
 }
