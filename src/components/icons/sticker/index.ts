@@ -7,3 +7,4 @@ export { StickerSparkle } from "./sparkle";
 export { StickerArrowRight } from "./arrow-right";
 export { StickerCheck } from "./check";
 export { StickerCalendar } from "./calendar";
+export { StickerPhoneMissed } from "./phone-missed";

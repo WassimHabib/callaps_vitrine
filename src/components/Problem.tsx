@@ -1,65 +1,72 @@
 "use client";
 
-import Image from "next/image";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
+import { StickerCard } from "@/components/ui/sticker-card";
+import { StickerIconBox } from "@/components/ui/sticker-icon-box";
+import {
+  StickerPhoneMissed,
+  StickerSparkle,
+  StickerSoundwave,
+  StickerCalendar,
+} from "@/components/icons/sticker";
+
+const itemIcons = [
+  <StickerPhoneMissed key="phone-missed" size={28} />,
+  <StickerSparkle key="sparkle" size={28} />,
+  <StickerSoundwave key="soundwave" size={28} />,
+  <StickerCalendar key="calendar" size={28} />,
+];
 
 export default function Problem() {
   const { lang } = useLang();
 
   return (
-    <section id="problem" className="bg-surface/50 py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left — Text */}
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
-              {t.problem.title[lang]}
-            </h2>
+    <section id="problem" className="relative py-20 md:py-28 bg-bg-deep">
+      {/* Subtle dot pattern */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-20"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, currentColor 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
 
-            <p className="text-slate-400 mb-8">
-              {t.problem.subtitle[lang]}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-[-0.03em] text-stroke mb-4 leading-tight">
+            {t.problem.title[lang]}
+          </h2>
+          <p className="text-lg text-stroke/75 leading-relaxed">
+            {t.problem.subtitle[lang]}
+          </p>
+        </div>
+
+        {/* Problem items grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {t.problem.items.map((item, i) => (
+            <StickerCard key={i} variant={i % 2 === 0 ? "card" : "elevated"} hoverable={false}>
+              <div className="flex items-start gap-4">
+                <StickerIconBox variant="violet" size="md">
+                  {itemIcons[i]}
+                </StickerIconBox>
+                <p className="text-base lg:text-lg text-stroke leading-relaxed font-medium">
+                  {item[lang]}
+                </p>
+              </div>
+            </StickerCard>
+          ))}
+        </div>
+
+        {/* Result banner */}
+        <div className="max-w-3xl mx-auto">
+          <StickerCard variant="violet" hoverable={false}>
+            <p className="text-xl md:text-2xl text-stroke font-black text-center leading-tight">
+              {t.problem.result[lang]}
             </p>
-
-            {/* Pain points */}
-            <div className="flex flex-col gap-3 mb-8">
-              {t.problem.items.map((item, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <svg
-                    className="w-5 h-5 text-accent shrink-0 mt-0.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2.5}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                  <span className="text-lg text-slate-300">{item[lang]}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Result */}
-            <div className="glass rounded-xl p-5 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-primary/10 to-accent/10 pointer-events-none" />
-              <p className="relative text-lg font-semibold text-white">
-                <span className="bg-gradient-to-r from-accent to-primary bg-[length:100%_2px] bg-no-repeat bg-bottom pb-1">
-                  {t.problem.result[lang]}
-                </span>
-              </p>
-            </div>
-          </div>
-
-          {/* Right — Image */}
-          <div className="flex justify-center lg:justify-end">
-            <Image
-              src="/appels-manques.png"
-              alt={lang === "fr" ? "Appels manqués" : "Missed calls"}
-              width={1000}
-              height={667}
-              className="w-full max-w-[480px] h-auto"
-            />
-          </div>
+          </StickerCard>
         </div>
       </div>
     </section>
