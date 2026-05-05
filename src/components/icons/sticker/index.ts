@@ -28,3 +28,5 @@ export { StickerStethoscope } from "./stethoscope";
 export { StickerScissors } from "./scissors";
 export { StickerTooth } from "./tooth";
 export { StickerEuro } from "./euro";
+export { StickerStar } from "./star";
+export { StickerQuote } from "./quote";
