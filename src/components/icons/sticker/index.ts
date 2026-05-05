@@ -32,3 +32,6 @@ export { StickerStar } from "./star";
 export { StickerQuote } from "./quote";
 export { StickerPlus } from "./plus";
 export { StickerMessage } from "./message";
+export { StickerMail } from "./mail";
+export { StickerPhone } from "./phone";
+export { StickerPin } from "./pin";
