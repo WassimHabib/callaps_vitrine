@@ -1,12 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #7B61FF;
-  --color-primary-light: #9B85FF;
-  --color-primary-dark: #6246E5;
-  --color-accent: #D946EF;
-  --color-accent-light: #E879F9;
-  --color-surface: #111118;
+  /* === Brand-book colors (strict 4) === */
+  --color-primary: #7B61FF;       /* violet — accent 1 */
+  --color-secondary: #4DAFFF;     /* bleu — accent 2 (remplace magenta) */
+  --color-stroke: #FFFFFF;        /* blanc — bordures + texte sur dark */
+  --color-bg-deep: #0B0B0F;       /* noir — fond principal */
+
+  /* === Surface variations (dark theme card depths) === */
+  --color-card: #16161D;          /* card par défaut */
+  --color-card-elevated: #1a1a24; /* card mise en avant */
+
+  /* === Backwards-compat (will be cleaned up in Task 28) === */
+  --color-surface: #16161D;
   --color-surface-light: #1a1a24;
   --color-surface-dark: #0B0B0F;
 }
@@ -16,137 +22,52 @@ html {
 }
 
 body {
-  background-color: var(--color-surface-dark);
-  color: white;
+  background-color: var(--color-bg-deep);
+  color: var(--color-stroke);
+  font-feature-settings: "ss01", "cv11";
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+/* Focus visible (a11y) */
+*:focus-visible {
+  outline: 3px solid var(--color-stroke);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
+/* === Sticker utility classes === */
+
+@utility sticker-shadow {
+  box-shadow: 8px 8px 0 var(--color-stroke);
 }
+
+@utility sticker-shadow-sm {
+  box-shadow: 3px 3px 0 var(--color-stroke);
+}
+
+@utility sticker-shadow-lg {
+  box-shadow: 10px 10px 0 var(--color-stroke);
+}
+
+@utility sticker-border {
+  border: 3px solid var(--color-stroke);
+}
+
+@utility sticker-border-thin {
+  border: 2px solid var(--color-stroke);
+}
+
+/* === Animations conservées (utiles, pas en conflit avec sticker) === */
 
 @keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes count-up {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in-up {
   animation: fade-in-up 0.8s ease-out forwards;
 }
 
-.animate-slide-in-left {
-  animation: slide-in-left 0.8s ease-out forwards;
-}
-
-.animate-slide-in-right {
-  animation: slide-in-right 0.8s ease-out forwards;
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
 .animation-delay-200 { animation-delay: 0.2s; }
 .animation-delay-400 { animation-delay: 0.4s; }
 .animation-delay-600 { animation-delay: 0.6s; }
 .animation-delay-800 { animation-delay: 0.8s; }
-
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-@keyframes ping-slow {
-  0% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-  75%, 100% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
-}
-
-@keyframes pulse-soft {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(217, 70, 239, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 10px rgba(217, 70, 239, 0);
-  }
-}
-
-.animate-ping-slow {
-  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-.animate-pulse-soft {
-  animation: pulse-soft 2.5s ease-in-out infinite;
-}
-
-.gradient-border {
-  position: relative;
-}
-
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask-composite: xor;
-  pointer-events: none;
-}
