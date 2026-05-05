@@ -15,3 +15,6 @@ export { StickerBoltFlash } from "./bolt-flash";
 export { StickerClock247 } from "./clock-247";
 export { StickerShield } from "./shield";
 export { StickerHeadset } from "./headset";
+export { StickerChartBar } from "./chart-bar";
+export { StickerTranscript } from "./transcript";
+export { StickerClock } from "./clock";
