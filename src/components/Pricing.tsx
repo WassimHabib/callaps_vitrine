@@ -3,103 +3,128 @@
 import Link from "next/link";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
+import { StickerCard } from "@/components/ui/sticker-card";
+import { StickerIconBox } from "@/components/ui/sticker-icon-box";
+import {
+  StickerCheck,
+  StickerEuro,
+  StickerSparkle,
+} from "@/components/icons/sticker";
 
-const CheckIcon = () => (
-  <svg
-    className="w-5 h-5 text-accent shrink-0"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2.5}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-  </svg>
-);
+const cardVariants = ["card", "violet", "elevated"] as const;
 
 export default function Pricing() {
   const { lang } = useLang();
 
   return (
-    <section id="pricing" className="bg-surface/50 py-24 px-4">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="pricing"
+      className="relative py-20 md:py-28 bg-bg-deep overflow-hidden"
+    >
+      {/* Subtle dot pattern */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">
-              {t.pricing.title1[lang]}
-              {t.pricing.titleHighlight[lang]}
-            </span>
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card border-[2px] border-stroke text-stroke text-xs font-bold uppercase tracking-wide mb-6 [box-shadow:3px_3px_0_var(--color-stroke)]">
+            <StickerSparkle size={16} />
+            {t.nav.pricing[lang]}
+          </span>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-stroke leading-tight mb-4">
+            {t.pricing.title1[lang]}
+            <span className="text-primary">{t.pricing.titleHighlight[lang]}</span>
           </h2>
-          <p className="text-lg text-slate-400">
+          <p className="text-base md:text-lg text-stroke/70 leading-relaxed">
             {t.pricing.subtitle[lang]}
           </p>
         </div>
 
-        {/* Cards */}
+        {/* Cards grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {t.pricing.plans.map((plan, i) => {
+            const variant = cardVariants[i];
             const isFeatured = i === 1;
             const isCustom = i === 2;
 
             return (
-              <div
-                key={i}
-                className={`glass rounded-2xl p-8 flex flex-col transition-transform duration-300 hover:scale-[1.02] ${
-                  isFeatured
-                    ? "ring-2 ring-accent/40 shadow-xl shadow-accent/10 lg:scale-105 lg:hover:scale-[1.07]"
-                    : ""
-                } relative`}
-              >
-                {/* Badge */}
+              <div key={i} className="relative flex">
+                {/* Populaire badge — absolute positioned over card */}
                 {isFeatured && (
-                  <span className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-primary to-accent text-white text-sm font-semibold whitespace-nowrap">
-                    🔥 {t.pricing.recommended[lang]}
+                  <span className="absolute top-5 right-5 z-10 inline-flex items-center gap-1 px-3 py-1 rounded-full bg-stroke text-bg-deep border-[2px] border-stroke text-[11px] font-black uppercase tracking-wide [box-shadow:3px_3px_0_var(--color-bg-deep)] sm:rotate-[5deg]">
+                    {t.pricing.recommended[lang]}
                   </span>
                 )}
 
-                <h3 className={`text-xl font-semibold text-white mb-2 ${isFeatured ? "mt-2" : ""}`}>
-                  {plan.name[lang]}
-                </h3>
+                <StickerCard variant={variant} className="w-full flex flex-col">
+                  {/* Icon box */}
+                  <StickerIconBox
+                    variant={isFeatured ? "stroke" : "violet"}
+                    size="md"
+                    className="mb-5"
+                  >
+                    <StickerEuro size={28} />
+                  </StickerIconBox>
 
-                <div className="mb-2">
-                  <span className="text-4xl md:text-5xl font-bold text-white">
-                    {plan.price[lang]}
-                  </span>
-                  {!isCustom && (
-                    <span className="text-lg text-slate-400"> {t.pricing.monthly[lang]}</span>
+                  {/* Plan name */}
+                  <StickerCard.Title>{plan.name[lang]}</StickerCard.Title>
+
+                  {/* Price */}
+                  <div className="my-4">
+                    <span className="text-5xl font-black leading-none">
+                      {plan.price[lang]}
+                    </span>
+                    {!isCustom && (
+                      <span className="text-base font-bold opacity-60 ml-1">
+                        {t.pricing.monthly[lang]}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Description */}
+                  <StickerCard.Description>{plan.description[lang]}</StickerCard.Description>
+
+                  {/* Features */}
+                  <ul className="space-y-2.5 mb-6 flex-1">
+                    {plan.features.map((feature, j) => (
+                      <li
+                        key={j}
+                        className="flex items-start gap-2.5 text-sm leading-snug"
+                      >
+                        <StickerCheck size={20} className="shrink-0 mt-0.5" />
+                        <span className="opacity-85">{feature[lang]}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Extra pricing */}
+                  {plan.extra && (
+                    <p className="text-xs opacity-50 mb-5 border-t border-current/10 pt-4">
+                      {plan.extra[lang]}
+                    </p>
                   )}
-                </div>
 
-                <p className="text-slate-400 mb-6 text-sm">
-                  {plan.description[lang]}
-                </p>
-
-                <ul className="space-y-3 mb-6 flex-1">
-                  {plan.features.map((feature, j) => (
-                    <li key={j} className="flex items-start gap-3 text-slate-300 text-sm">
-                      <CheckIcon />
-                      {feature[lang]}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Extra pricing */}
-                {plan.extra && (
-                  <p className="text-xs text-slate-500 mb-6 border-t border-white/5 pt-4">
-                    {plan.extra[lang]}
-                  </p>
-                )}
-
-                <Link
-                  href="/demo"
-                  className={`block w-full text-center px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                    isFeatured
-                      ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-accent/25 hover:scale-105"
-                      : "border border-accent/30 text-accent hover:bg-accent/10"
-                  }`}
-                >
-                  {isCustom ? t.pricing.ctaContact[lang] : t.pricing.cta[lang]}
-                </Link>
+                  {/* CTA */}
+                  <Link
+                    href="/demo"
+                    className={`block w-full text-center px-6 py-3 rounded-full font-black text-sm border-[2px] transition-transform duration-150 hover:-translate-y-0.5 ${
+                      isFeatured
+                        ? "bg-bg-deep text-stroke border-stroke [box-shadow:4px_4px_0_var(--color-stroke)]"
+                        : "bg-stroke text-bg-deep border-stroke [box-shadow:4px_4px_0_var(--color-bg-deep)]"
+                    }`}
+                  >
+                    {isCustom ? t.pricing.ctaContact[lang] : t.pricing.cta[lang]}
+                  </Link>
+                </StickerCard>
               </div>
             );
           })}

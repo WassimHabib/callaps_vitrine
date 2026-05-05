@@ -27,3 +27,4 @@ export { StickerRestaurant } from "./restaurant";
 export { StickerStethoscope } from "./stethoscope";
 export { StickerScissors } from "./scissors";
 export { StickerTooth } from "./tooth";
+export { StickerEuro } from "./euro";
