@@ -22,3 +22,8 @@ export { StickerBubbleImessage } from "./bubble-imessage";
 export { StickerConversation } from "./conversation";
 export { StickerLead } from "./lead";
 export { StickerTrendingUp } from "./trending-up";
+export { StickerBriefcase } from "./briefcase";
+export { StickerRestaurant } from "./restaurant";
+export { StickerStethoscope } from "./stethoscope";
+export { StickerScissors } from "./scissors";
+export { StickerTooth } from "./tooth";
