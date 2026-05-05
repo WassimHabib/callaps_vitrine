@@ -21,3 +21,4 @@ export { StickerClock } from "./clock";
 export { StickerBubbleImessage } from "./bubble-imessage";
 export { StickerConversation } from "./conversation";
 export { StickerLead } from "./lead";
+export { StickerTrendingUp } from "./trending-up";
