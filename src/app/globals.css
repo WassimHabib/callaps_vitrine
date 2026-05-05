@@ -10,11 +10,6 @@
   /* === Surface variations (dark theme card depths) === */
   --color-card: #16161D;          /* card par défaut */
   --color-card-elevated: #1a1a24; /* card mise en avant */
-
-  /* === Backwards-compat (will be cleaned up in Task 28) === */
-  --color-surface: #16161D;
-  --color-surface-light: #1a1a24;
-  --color-surface-dark: #0B0B0F;
 }
 
 html {
