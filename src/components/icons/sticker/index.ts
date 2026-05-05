@@ -8,3 +8,4 @@ export { StickerArrowRight } from "./arrow-right";
 export { StickerCheck } from "./check";
 export { StickerCalendar } from "./calendar";
 export { StickerPhoneMissed } from "./phone-missed";
+export { StickerCog } from "./cog";

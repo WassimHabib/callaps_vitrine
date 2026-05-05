@@ -2,44 +2,76 @@
 
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
+import { StickerCard } from "@/components/ui/sticker-card";
+import { StickerIconBox } from "@/components/ui/sticker-icon-box";
+import {
+  StickerCog,
+  StickerMicrophone,
+  StickerSoundwave,
+  StickerPhoneIncoming,
+} from "@/components/icons/sticker";
+
+const itemIcons = [
+  StickerPhoneIncoming,
+  StickerSoundwave,
+  StickerMicrophone,
+  StickerCog,
+];
 
 export default function Solution() {
   const { lang } = useLang();
+  const items = t.solution.items;
 
   return (
-    <section id="solution" className="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-[#0B0B0F] via-surface to-surface-dark">
-      {/* Gradient glow — le glow coloré descend ici */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-accent/8 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute top-[20%] right-[15%] w-[400px] h-[300px] bg-primary/6 rounded-full blur-[120px] pointer-events-none" />
+    <section id="solution" className="relative py-20 md:py-28 bg-primary overflow-hidden">
+      {/* Subtle white dot pattern overlay */}
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)",
+          backgroundSize: "28px 28px",
+        }}
+        aria-hidden
+      />
 
-      <div className="relative z-10 max-w-5xl mx-auto">
-        {/* Title */}
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
-          <span className="text-white">{t.solution.title[lang]}</span>
-          <span className="gradient-text">{t.solution.titleHighlight[lang]}</span>
-        </h2>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-card border-[2px] border-stroke text-stroke text-xs font-bold uppercase tracking-wide mb-4 [box-shadow:3px_3px_0_var(--color-stroke)]">
+            La solution
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-[-0.03em] text-stroke mb-4 leading-tight">
+            {t.solution.title[lang]}
+            <span className="underline decoration-wavy decoration-stroke/40 underline-offset-4">
+              {t.solution.titleHighlight[lang]}
+            </span>
+          </h2>
+          <p className="text-lg text-stroke/85 leading-relaxed">
+            {t.solution.subtitle[lang]}
+          </p>
+        </div>
 
-        {/* Subtitle */}
-        <p className="text-slate-400 text-lg text-center mb-12 max-w-2xl mx-auto">
-          {t.solution.subtitle[lang]}
-        </p>
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {items.map((item, i) => {
+            const Icon = itemIcons[i % itemIcons.length];
+            const isPaper = i === items.length - 1;
+            const cardVariant = isPaper ? "paper" : "canvas";
+            const iconVariant = isPaper ? "stroke" : "violet";
+            const iconClassName = isPaper ? "text-bg-deep" : "text-stroke";
 
-        {/* Solution items */}
-        <div className="flex flex-col gap-4 max-w-2xl mx-auto">
-          {t.solution.items.map((item, index) => (
-            <div key={index} className="glass rounded-xl p-5 flex items-start gap-4">
-              <svg
-                className="w-6 h-6 text-accent-light shrink-0 mt-0.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.5}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-lg text-slate-200">{item[lang]}</span>
-            </div>
-          ))}
+            return (
+              <StickerCard key={i} variant={cardVariant}>
+                <StickerIconBox variant={iconVariant} size="md" className="mb-4">
+                  <Icon size={28} className={iconClassName} />
+                </StickerIconBox>
+                <p className="text-base lg:text-lg leading-relaxed font-medium">
+                  {item[lang]}
+                </p>
+              </StickerCard>
+            );
+          })}
         </div>
       </div>
     </section>
