@@ -18,3 +18,6 @@ export { StickerHeadset } from "./headset";
 export { StickerChartBar } from "./chart-bar";
 export { StickerTranscript } from "./transcript";
 export { StickerClock } from "./clock";
+export { StickerBubbleImessage } from "./bubble-imessage";
+export { StickerConversation } from "./conversation";
+export { StickerLead } from "./lead";
