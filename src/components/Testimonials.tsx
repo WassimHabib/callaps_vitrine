@@ -12,7 +12,7 @@ export default function Testimonials() {
   const { lang } = useLang();
 
   return (
-    <section id="temoignages" className="relative py-20 md:py-28 bg-[#FAF7F0] text-[#0B0B0F]">
+    <section id="temoignages" className="relative py-20 md:py-28 bg-card-elevated">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
