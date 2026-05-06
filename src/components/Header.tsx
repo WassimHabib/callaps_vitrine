@@ -33,8 +33,7 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 lg:h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="callaps" width={32} height={32} className="w-8 h-8" />
-          <span className="hidden sm:inline font-black text-stroke text-lg tracking-tight">callaps</span>
+          <Image src="/logo.png" alt="callaps" width={140} height={36} className="h-9 w-auto brightness-0 invert" priority />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">

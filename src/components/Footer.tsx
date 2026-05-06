@@ -43,7 +43,7 @@ export default function Footer() {
                 alt="Callaps"
                 width={360}
                 height={100}
-                className="h-14 md:h-24 w-auto"
+                className="h-14 md:h-24 w-auto brightness-0 invert"
               />
             </a>
             <p className="mt-4 max-w-xs text-stroke/60 text-sm leading-relaxed">
