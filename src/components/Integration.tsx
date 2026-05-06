@@ -35,7 +35,7 @@ export default function Integration() {
   const { lang } = useLang();
 
   return (
-    <section className="bg-card py-20 md:py-28 px-6">
+    <section className="bg-card-elevated py-20 md:py-28 px-6">
       <div className="max-w-5xl mx-auto">
 
         {/* Sticker badge header */}

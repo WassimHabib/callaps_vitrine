@@ -56,7 +56,7 @@ export default function ResultatHero() {
   ];
 
   return (
-    <section className="relative z-30 bg-card pt-20 pb-24 px-6 overflow-hidden">
+    <section className="relative z-30 bg-card-elevated pt-20 pb-24 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
 
         {/* Stats row */}

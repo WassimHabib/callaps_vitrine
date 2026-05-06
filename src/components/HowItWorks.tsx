@@ -18,7 +18,7 @@ export default function HowItWorks() {
   const steps = t.howItWorks.steps;
 
   return (
-    <section id="how-it-works" className="relative py-20 md:py-28 bg-card">
+    <section id="how-it-works" className="relative py-20 md:py-28 bg-card-elevated">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">

@@ -34,7 +34,7 @@ export default function TargetAudience() {
   const items = t.targetAudience.items;
 
   return (
-    <section id="target-audience" className="relative py-20 md:py-28 bg-card overflow-hidden">
+    <section id="target-audience" className="relative py-20 md:py-28 bg-card-elevated overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
