@@ -28,7 +28,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative py-20 md:py-28 bg-bg-deep overflow-hidden">
+    <section id="faq" className="relative py-20 md:py-28 bg-card overflow-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}

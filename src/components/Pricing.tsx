@@ -19,7 +19,7 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="relative py-20 md:py-28 bg-bg-deep overflow-hidden"
+      className="relative py-20 md:py-28 bg-card overflow-hidden"
     >
       {/* Subtle dot pattern */}
       <div

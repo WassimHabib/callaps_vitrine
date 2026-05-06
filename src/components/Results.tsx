@@ -34,7 +34,7 @@ export default function Results() {
   return (
     <section
       id="resultats"
-      className="relative py-20 md:py-28 bg-bg-deep overflow-hidden"
+      className="relative py-20 md:py-28 bg-card overflow-hidden"
     >
       {/* Subtle white dot pattern overlay */}
       <div

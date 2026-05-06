@@ -22,7 +22,7 @@ export default function Problem() {
   const { lang } = useLang();
 
   return (
-    <section id="problem" className="relative py-20 md:py-28 bg-bg-deep">
+    <section id="problem" className="relative py-20 md:py-28 bg-card">
       {/* Subtle dot pattern */}
       <div
         className="pointer-events-none absolute inset-0 opacity-20"

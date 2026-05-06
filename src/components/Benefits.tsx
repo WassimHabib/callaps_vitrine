@@ -32,7 +32,7 @@ export default function Benefits() {
   const items = t.benefits.items;
 
   return (
-    <section id="benefits" className="relative py-20 md:py-28 bg-bg-deep overflow-hidden">
+    <section id="benefits" className="relative py-20 md:py-28 bg-card overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">

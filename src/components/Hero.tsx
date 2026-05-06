@@ -18,7 +18,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center bg-bg-deep overflow-hidden pt-20 lg:pt-24">
+    <section className="relative min-h-screen flex items-center bg-card overflow-hidden pt-20 lg:pt-24">
       {/* Pattern dots discret */}
       <div
         className="absolute inset-0 -z-10 opacity-30"
