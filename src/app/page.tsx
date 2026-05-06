@@ -7,7 +7,6 @@ import Integration from "@/components/Integration";
 import Benefits from "@/components/Benefits";
 import Analysis from "@/components/Analysis";
 import HowItWorks from "@/components/HowItWorks";
-import Results from "@/components/Results";
 import TargetAudience from "@/components/TargetAudience";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
@@ -18,7 +17,7 @@ import FloatingContact from "@/components/FloatingContact";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-surface-dark">
+    <main className="min-h-screen bg-bg-deep">
       <Header />
       <Hero />
       <ResultatHero />
@@ -28,7 +27,6 @@ export default function Home() {
       <Benefits />
       <Analysis />
       <HowItWorks />
-      <Results />
       <TargetAudience />
       <Pricing />
       <Testimonials />
